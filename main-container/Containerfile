@@ -12,5 +12,8 @@ RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
     dnf check-update && \
     dnf install -y code # or code-insiders
 
+# Install gh cli
+RUN dnf install -y gh
+
 # Run vscode
 CMD code
