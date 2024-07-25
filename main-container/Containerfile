@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:rawhide
 
 # Install rust and deps
 RUN sudo dnf install -y rustc cargo rust-analyzer rustfmt clippy
