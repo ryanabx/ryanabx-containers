@@ -11,7 +11,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # Git forge CLIs
     gh pagure-cli \
 # Fedora packaging stuff
-    fedpkg \
+    fedpkg fedora-packager \
 # Phone dev tools
     android-tools pmbootstrap && \
 # Finish
