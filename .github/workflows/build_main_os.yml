@@ -1,4 +1,4 @@
-name: main-os
+name: main_os
 
 on:
   workflow_dispatch:
