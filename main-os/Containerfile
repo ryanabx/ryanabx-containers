@@ -8,7 +8,12 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
     rust cargo rust-analyzer rustfmt clippy \
 # Dev dependencies
     wayland-devel libxkbcommon-devel fuse-devel squashfs-tools \
+# Git forge CLIs
+    gh pagure-cli \
+# Fedora packaging stuff
+    fedpkg \
 # Phone dev tools
     android-tools pmbootstrap && \
+# Finish
     ostree container commit && \
     mkdir -p /var/tmp && chmod -R 1777 /var/tmp
