@@ -1,4 +1,4 @@
-name: ryanabx-main
+name: main_container
 
 on:
   workflow_dispatch:

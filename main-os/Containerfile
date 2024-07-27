@@ -1,0 +1,14 @@
+FROM ghcr.io/ublue-os/cosmic-base:40
+
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null && \
+# Install stuff
+    rpm-ostree install code \
+# Rust development
+    rust cargo rust-analyzer rustfmt clippy \
+# Dev dependencies
+    wayland-devel libxkbcommon-devel fuse-devel squashfs-tools \
+# Phone dev tools
+    android-tools pmbootstrap && \
+    ostree container commit && \
+    mkdir -p /var/tmp && chmod -R 1777 /var/tmp
