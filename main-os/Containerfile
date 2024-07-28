@@ -11,7 +11,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # Dev dependencies
     wayland-devel libxkbcommon-devel fuse-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
-    gdk-pixbuf2-devel pango-devel \
+    gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
 # Git forge CLIs
     gh pagure-cli \
 # Fedora packaging stuff
