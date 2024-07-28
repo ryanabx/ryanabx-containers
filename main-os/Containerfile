@@ -8,7 +8,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # Rust development
     rust cargo rust-analyzer rustfmt clippy \
 # Dev dependencies
-    wayland-devel libxkbcommon-devel fuse-devel squashfs-tools gstreamer1-devel \
+    wayland-devel libxkbcommon-devel fuse-devel squashfs-tools gstreamer1 gstreamer1-devel \
 # Git forge CLIs
     gh pagure-cli \
 # Fedora packaging stuff
