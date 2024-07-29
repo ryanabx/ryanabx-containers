@@ -18,6 +18,6 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # Fedora packaging stuff
     fedpkg fedora-packager \
 # Phone dev tools
-    android-tools pmbootstrap \
+    android-tools pmbootstrap && \
 # Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
     ln -s /usr/bin/ld.bfd /usr/bin/ld
