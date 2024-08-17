@@ -1,29 +1,22 @@
 # Bootc image notes
 
 ```shell
+cd ryanabx-os-bootc
+mkdir output
+sudo podman build -t ryanabx-os-bootc:latest .
 sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/config.toml:/config.toml:ro \
-    -v $(pwd)/output:/output \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type anaconda-iso \
-    quay.io/centos-bootc/centos-bootc:stream9
+--rm \
+-it \
+--privileged \
+--pull=newer \
+--security-opt label=type:unconfined_t \
+-v $(pwd)/config.toml:/config.toml:ro \
+-v $(pwd)/output:/output \
+-v /var/lib/containers/storage:/var/lib/containers/storage \
+quay.io/centos-bootc/bootc-image-builder:latest \
+--type qcow2 \
+--rootfs ext4 \
+--local localhost/ryanabx-os-bootc:latest
 ```
 
-```shell
-sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/config.toml:/config.toml:ro \
-    -v $(pwd)/output:/output \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type anaconda-iso \
-    localhost/ryanabx-os-bootc
-```
+> NOTE: Change to `anaconda-iso` for iso install
