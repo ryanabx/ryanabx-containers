@@ -1,0 +1,44 @@
+FROM quay.io/fedora/fedora-bootc:40
+
+RUN dnf install -y dnf-plugins-core && \
+    dnf config-manager --save \
+        --setopt=exclude=PackageKit,PackageKit-command-not-found,rootfiles
+
+# Install KDE Plasma
+RUN dnf install -y @kde-desktop-environment
+
+# Add vscode repo
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
+    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+
+# Add virtualbox repo
+# RUN wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | rpm --import -
+
+# Add dnf5
+RUN dnf install -y dnf5
+
+# Install stuff (applications to start)
+RUN dnf5 install -y code \
+    # Rust development
+    rust cargo rust-analyzer rustfmt clippy \
+    # Dev dependencies
+    wayland-devel libxkbcommon-devel fuse-devel \
+    squashfs-tools gstreamer1-plugins-base-devel \
+    gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
+    lld make automake gcc gcc-c++ kernel-devel glibc-devel binutils binutils-devel binutils-gold \
+    # Git forge CLIs
+    gh pagure-cli \
+    # Fedora packaging stuff
+    fedpkg fedora-packager \
+    # Phone dev tools
+    android-tools pmbootstrap \
+    # Tuned, for power management
+    # tuned tuned-ppd
+    # Requirement for bootc image builder
+    osbuild-selinux
+
+RUN dnf clean all
+
+# Enable services
+RUN systemctl enable sddm power-profiles-daemon
+
