@@ -2,7 +2,7 @@ FROM quay.io/fedora/fedora-bootc:40
 
 RUN dnf install -y dnf-plugins-core && \
     dnf config-manager --save \
-        --setopt=exclude=PackageKit,PackageKit-command-not-found,rootfiles
+        --setopt=exclude=rootfiles
 
 # Install KDE Plasma
 RUN dnf install -y @kde-desktop-environment
