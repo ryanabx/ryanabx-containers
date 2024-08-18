@@ -5,7 +5,10 @@ RUN dnf install -y dnf-plugins-core && \
         --setopt=exclude=rootfiles
 
 # Install KDE Plasma
-RUN dnf install -y @kde-desktop-environment
+# RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
+
+# Install GNOME Shell
+RUN dnf install -y @workstation-product-environment gnome-tweaks && systemctl enable gdm
 
 # Add vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
@@ -35,10 +38,12 @@ RUN dnf5 install -y code \
     # Tuned, for power management
     # tuned tuned-ppd
     # Requirement for bootc image builder
-    osbuild-selinux
+    osbuild-selinux \
+    # Qemu
+    qemu
 
 RUN dnf clean all
 
 # Enable services
-RUN systemctl enable sddm power-profiles-daemon
+RUN systemctl enable power-profiles-daemon
 
