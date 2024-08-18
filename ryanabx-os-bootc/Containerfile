@@ -2,23 +2,26 @@ FROM quay.io/fedora/fedora-bootc:40
 
 RUN dnf install -y dnf-plugins-core && \
     dnf config-manager --save \
-        --setopt=exclude=rootfiles firefox
+        --setopt=exclude=rootfiles,firefox,PackageKit,PackageKit-command-not-found
 
 # Install KDE Plasma
-# RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
+RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
 # Install GNOME Shell
-RUN dnf install -y @workstation-product-environment gnome-tweaks && systemctl enable gdm
+# RUN dnf install -y @workstation-product-environment gnome-tweaks && systemctl enable gdm
 
 # Add vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
     echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 
-# Add virtualbox repo
-# RUN wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | rpm --import -
-
 # Add dnf5
 RUN dnf install -y dnf5
+
+# Add virtualbox repo
+# RUN wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | rpm --import - && dnf5 install -y virtualbox
+
+# Build kernel modules for virtualbox
+# RUN /sbin/vboxconfig
 
 # Install stuff (applications to start)
 RUN dnf5 install -y code \
@@ -49,8 +52,7 @@ RUN mkdir -p /etc/flatpak/remotes.d && \
     curl -o /etc/flatpak/remotes.d/flathub.flatpakrepo  https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install flatpaks
-RUN flatpak install -y org.mozilla.firefox
+RUN flatpak install --system -y flathub org.mozilla.firefox
 
 # Enable services
 RUN systemctl enable power-profiles-daemon
-
