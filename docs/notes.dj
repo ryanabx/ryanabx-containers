@@ -15,8 +15,9 @@ sudo podman run \
 -v /var/lib/containers/storage:/var/lib/containers/storage \
 quay.io/centos-bootc/bootc-image-builder:latest \
 --type qcow2 \
---rootfs ext4 \
+--rootfs btrfs \
 --local localhost/ryanabx-os-bootc:latest
 ```
 
 > NOTE: Change to `anaconda-iso` for iso install
+> NOTE2: Could also change btrfs to ext4 if you want
