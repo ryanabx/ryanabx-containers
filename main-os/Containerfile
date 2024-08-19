@@ -1,23 +1,29 @@
-# FROM ghcr.io/ublue-os/cosmic-base:40
 FROM quay.io/fedora/fedora-kinoite:latest
-# FROM quay.io/fedora-ostree-desktops/kinoite:40
 
+# Import vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null && \
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+
 # Install stuff (applications to start)
-    rpm-ostree install code qemu virt-manager \
-# Rust development
+RUN rpm-ostree install code \
+    # Rust stuff
     rust cargo rust-analyzer rustfmt clippy \
-# Dev dependencies
+    # Dev dependencies
     wayland-devel libxkbcommon-devel fuse-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     lld make automake gcc gcc-c++ kernel-devel glibc-devel binutils binutils-devel binutils-gold \
-# Git forge CLIs
+    # Git forge CLIs
     gh pagure-cli \
-# Fedora packaging stuff
+    # Fedora packaging stuff
     fedpkg fedora-packager \
-# Phone dev tools
-    android-tools pmbootstrap && \
+    # Phone dev tools
+    android-tools pmbootstrap \
+    # Tuned, for power management
+    # tuned tuned-ppd
+    # Requirement for bootc image builder
+    osbuild-selinux \
+    # Qemu and virt-manager
+    qemu virt-manager
 # Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
-    ln -s /usr/bin/ld.bfd /usr/bin/ld
+RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
