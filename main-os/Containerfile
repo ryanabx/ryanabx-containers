@@ -26,7 +26,7 @@ RUN rpm-ostree install code \
     # Qemu and virt-manager
     qemu virt-manager virt-viewer \
     # Ruby
-    ruby \
+    ruby ruby-devel \
     # Node.js
     nodejs
 # Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
