@@ -28,7 +28,9 @@ RUN rpm-ostree install code \
     # Ruby
     ruby ruby-devel \
     # Node.js
-    nodejs
+    nodejs \
+    # cosmic-comp devel
+    libseat-devel pixman-devel
 # Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
 RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
 
