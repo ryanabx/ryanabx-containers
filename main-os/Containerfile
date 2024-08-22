@@ -34,17 +34,17 @@ RUN rpm-ostree install code \
 # Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
 RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
 
-# Add cosmic-comp package for testing ryanabx-shell
+# Add cosmic packages for testing ryanabx-shell
 RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
-RUN rpm-ostree install cosmic-comp
+RUN rpm-ostree install cosmic-desktop
 
-ENV CARGO_HOME /workdir/.cargo
-RUN mkdir -p /workdir
+# ENV CARGO_HOME /workdir/.cargo
+# RUN mkdir -p /workdir
 
-WORKDIR /workdir
+# WORKDIR /workdir
 
-RUN git clone https://github.com/ryanabx/ryanabx-session && cd ryanabx-session && ./build-install-ryanabx-shell.sh && ./install-session.sh
+# RUN git clone https://github.com/ryanabx/ryanabx-session && cd ryanabx-session && ./build-install-ryanabx-shell.sh && ./install-session.sh
 
-WORKDIR /
+# WORKDIR /
 
-RUN rm -rf /workdir
+# RUN rm -rf /workdir
