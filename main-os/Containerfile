@@ -36,8 +36,13 @@ RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
 RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
 RUN rpm-ostree install cosmic-comp
 
+ENV CARGO_HOME /workdir/.cargo
 RUN mkdir -p /workdir
 
 WORKDIR /workdir
 
 RUN git clone https://github.com/ryanabx/ryanabx-session && cd ryanabx-session && ./build-install-ryanabx-shell.sh && ./install-session.sh
+
+WORKDIR /
+
+RUN rm -rf /workdir
