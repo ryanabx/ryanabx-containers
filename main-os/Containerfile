@@ -6,6 +6,8 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 
 # Install stuff (applications to start)
 RUN rpm-ostree install code \
+    # Git lfs
+    git-lfs \
     # Rust stuff
     rust cargo rust-analyzer rustfmt clippy \
     # Dev dependencies
