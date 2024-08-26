@@ -14,7 +14,7 @@ RUN rpm-ostree install code \
     wayland-devel libxkbcommon-devel fuse-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
-    lld make automake gcc gcc-c++ clang clang-devel kernel-devel glibc-devel binutils binutils-devel binutils-gold \
+    lld make automake gcc gcc-c++ clang clang-devel mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
     # Git forge CLIs
     gh pagure-cli \
     # Fedora packaging stuff
