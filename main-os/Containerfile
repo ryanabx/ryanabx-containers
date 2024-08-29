@@ -7,6 +7,8 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 
 # Install stuff (applications to start)
 RUN rpm-ostree install code vim \
+# for cosmic
+    gnome-keyring power-profiles-daemon \
     # Git lfs
     git-lfs \
     # Rust stuff
