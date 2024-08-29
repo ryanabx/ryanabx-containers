@@ -1,5 +1,5 @@
 # FROM quay.io/fedora/fedora-kinoite:latest
-FROM quay.io/fedora/fedora:latest
+FROM quay.io/fedora-ostree-desktops/base:latest
 
 # Import vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
