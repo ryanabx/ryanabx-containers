@@ -42,8 +42,8 @@ RUN rpm-ostree install code vim \
 RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
 
 # Add cosmic packages for testing ryanabx-shell
-# RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
-# RUN rpm-ostree install cosmic-desktop
+RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
+RUN rpm-ostree install cosmic-desktop
 
 # ENV CARGO_HOME /workdir/.cargo
 # RUN mkdir -p /workdir
