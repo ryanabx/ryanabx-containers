@@ -8,10 +8,9 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 RUN wget https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo
 # NOTE: Run sudo rpm-ostree usroverlay && sudo /sbin/vboxconfig to set up virtualbox
 
-RUN rpm-ostree override remove power-profiles-daemon
-
 # Install stuff (applications to start)
-RUN rpm-ostree install VirtualBox-7.0 code vim \
+RUN rpm-ostree override remove power-profiles-daemon && \
+    rpm-ostree install VirtualBox-7.0 code vim \
 # for cosmic
     gnome-keyring power-profiles-daemon \
     # Git lfs
