@@ -40,8 +40,6 @@ RUN rpm-ostree install VirtualBox-7.0 code vim \
     libseat-devel pixman-devel \
     # KDE devel
     cmake
-# Symlink ld because alternatives are brocken </3 https://github.com/coreos/rpm-ostree/issues/1614
-RUN ln -s /usr/bin/ld.bfd /usr/bin/ld
 
 # Add cosmic packages for testing ryanabx-shell
 RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
