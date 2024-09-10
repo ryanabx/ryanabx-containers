@@ -5,12 +5,15 @@ FROM quay.io/fedora/fedora-kinoite:41
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 
-RUN wget https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo && \
-    sed -i 's/\$releasever/40/g' /etc/yum.repos.d/virtualbox.repo
+# RUN wget https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo && \
+#     sed -i 's/\$releasever/40/g' /etc/yum.repos.d/virtualbox.repo
 # NOTE: Run sudo rpm-ostree usroverlay && sudo /sbin/vboxconfig to set up virtualbox
 
 # Install stuff (applications to start)
-RUN rpm-ostree install VirtualBox-7.0 code vim \
+RUN rpm-ostree install \
+    # VirtualBox-7.0 \
+    # Code editors
+    code vim \
     # Git lfs
     git-lfs \
     # Rust stuff
@@ -26,12 +29,10 @@ RUN rpm-ostree install VirtualBox-7.0 code vim \
     fedpkg fedora-packager \
     # Phone dev tools
     android-tools pmbootstrap \
-    # Tuned, for power management
-    # tuned tuned-ppd
     # Requirement for bootc image builder
     osbuild-selinux \
     # Qemu and virt-manager
-    qemu virt-manager virt-viewer \
+    qemu virt-manager \
     # Ruby
     ruby ruby-devel \
     # Node.js
