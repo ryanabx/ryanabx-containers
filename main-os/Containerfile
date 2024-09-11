@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-kinoite:41
+FROM quay.io/fedora/fedora-kinoite:40
 
 # Import vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
@@ -9,7 +9,8 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # NOTE: Run sudo rpm-ostree usroverlay && sudo /sbin/vboxconfig to set up virtualbox
 
 # Install stuff (applications to start)
-RUN rpm-ostree install \
+RUN rpm-ostree override remove power-profiles-daemon && \
+    rpm-ostree install \
     # Code editors
     code vim \
     # Git lfs
@@ -38,7 +39,11 @@ RUN rpm-ostree install \
     # cosmic-comp devel
     libseat-devel pixman-devel \
     # KDE devel
-    cmake
+    cmake \
+    # Tuned!
+    tuned tuned-ppd && \
+    # Enable services
+    systemctl enable tuned.service tuned-ppd.service
 
 # Add cosmic packages for testing ryanabx-shell
 # RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
