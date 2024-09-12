@@ -11,8 +11,6 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # Install stuff (applications to start)
 RUN rpm-ostree override remove power-profiles-daemon && \
     rpm-ostree install \
-    # Code editors
-    code vim \
     # Git lfs
     git-lfs \
     # Rust stuff
@@ -30,8 +28,6 @@ RUN rpm-ostree override remove power-profiles-daemon && \
     android-tools pmbootstrap \
     # Requirement for bootc image builder
     osbuild-selinux \
-    # Qemu and virt-manager
-    qemu virt-manager \
     # Ruby
     ruby ruby-devel \
     # Node.js
@@ -40,6 +36,11 @@ RUN rpm-ostree override remove power-profiles-daemon && \
     libseat-devel pixman-devel \
     # KDE devel
     cmake \
+    # OS Specific stuff
+    # Code editors
+    code vim \
+    # Qemu and virt-manager
+    qemu virt-manager \
     # Tuned!
     tuned tuned-ppd && \
     # Enable services
