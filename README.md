@@ -35,6 +35,7 @@ sudo podman run \
     -v $(pwd)/output:/output \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --type qcow2 \
+    --rootfs btrfs \
     <image>
 ```
 
