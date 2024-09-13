@@ -34,7 +34,7 @@ sudo podman run \
     -v $(pwd)/config.toml:/config.toml:ro \
     -v $(pwd)/output:/output \
     quay.io/centos-bootc/bootc-image-builder:latest \
-    --type qcow2 \
+    --type anaconda-iso \
     --rootfs btrfs \
     <image>
 ```
