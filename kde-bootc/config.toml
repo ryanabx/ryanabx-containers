@@ -1,4 +1,4 @@
 [[customizations.user]]
-name = "mainuser"
+name = "user"
 password = "password"
 groups = ["wheel"]

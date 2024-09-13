@@ -1,0 +1,7 @@
+com.discordapp.Discord
+com.spotify.Client
+com.valvesoftware.Steam
+com.visualstudio.code
+io.github.shiftey.Desktop
+org.inkscape.Inkscape
+org.mozilla.firefox

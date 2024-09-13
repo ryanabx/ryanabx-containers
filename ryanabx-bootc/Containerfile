@@ -1,0 +1,55 @@
+FROM quay.io/fedora/fedora-bootc:40
+
+RUN dnf install -y dnf-plugins-core && \
+    dnf config-manager --save \
+        --setopt=exclude=rootfiles,firefox,PackageKit,PackageKit-command-not-found
+
+# Install KDE Plasma
+RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
+
+# Import vscode repo
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+
+# RUN wget https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo && \
+#     sed -i 's/\$releasever/40/g' /etc/yum.repos.d/virtualbox.repo
+# NOTE: Run sudo rpm-ostree usroverlay && sudo /sbin/vboxconfig to set up virtualbox
+
+# Install stuff (applications to start)
+RUN dnf install -y \
+    # Virtualbox-7.0 \
+    # Git lfs
+    git git-lfs \
+    # Rust
+    rust cargo rust-analyzer rustfmt clippy \
+    # Other dev dependencies
+    wayland-devel libxkbcommon-devel fuse-devel squashfs-tools gstreamer1-plugins-base-devel gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel lld make automake gcc gcc-c++ clang clang-devel mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
+    # Git forge CLIs
+    gh pagure-cli \
+    # Fedora packaging stuff
+    fedpkg fedora-packager \
+    # Phone dev tools
+    android-tools pmbootstrap \
+    # Requirement for bootc image builder
+    osbuild-selinux \
+    # Ruby
+    ruby ruby-devel \
+    # Node.js
+    nodejs \
+    # cosmic-comp devel
+    libseat-devel pixman-devel \
+    # KDE devel
+    cmake \
+    # OS Specific stuff
+    # Code editors
+    code \
+    # Qemu and virt-manager
+    qemu virt-manager
+    # # Tuned!
+    # tuned tuned-ppd && \
+    # # Enable services
+    # systemctl enable tuned.service tuned-ppd.service
+
+# Add cosmic packages for testing ryanabx-shell
+# RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
+# RUN rpm-ostree install cosmic-desktop
