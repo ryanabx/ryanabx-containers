@@ -104,7 +104,7 @@ jobs:
       
       - name: Build iso
         run: |
-          sudo apt update && sudo apt install -y podman && sudo podman run \
+          mkdir output && sudo apt update && sudo apt install -y podman && sudo podman run \
           --rm \
           -it \
           --privileged \
