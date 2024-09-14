@@ -1,0 +1,44 @@
+name: ryanabx-bootc-iso
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-iso:
+    name: Build ISO
+    needs: build 
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Maximize build space
+        uses: ublue-os/remove-unwanted-software@v7
+        with:
+          remove-android: 'true'
+      
+      - name: Build iso
+        run: |
+          mkdir output && sudo apt update && sudo apt install -y podman && sudo podman run \
+          --rm \
+          -it \
+          --privileged \
+          --pull=newer \
+          --security-opt label=type:unconfined_t \
+          -v $(pwd)/ryanabx-bootc/config.example.toml:/config.toml:ro \
+          -v $(pwd)/output:/output \
+          quay.io/centos-bootc/bootc-image-builder:latest \
+          --type anaconda-iso \
+          --rootfs btrfs \
+          ghcr.io/ryanabx/ryanabx-bootc
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ryanabx-bootc-iso
+          path: output/bootiso/

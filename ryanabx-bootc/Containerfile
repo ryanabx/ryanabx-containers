@@ -7,12 +7,6 @@ RUN dnf install -y dnf-plugins-core && \
 # Install KDE Plasma
 RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
-COPY ./preinstall-flatpaks/preinstall-flatpaks /usr/bin/preinstall-flatpaks
-COPY ./preinstall-flatpaks/preinstall-flatpaks.conf /usr/etc/preinstall-flatpaks.conf
-COPY ./preinstall-flatpaks/preinstall-flatpaks.service /usr/lib/systemd/system/preinstall-flatpaks.service
-
-RUN systemctl enable --system preinstall-flatpaks.service
-
 # Import vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
