@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# Install flatpaks from a preinstall list
+# Very simple script that will preinstall flatpaks on boot
+
+xargs -a /usr/etc/preinstall-flatpaks.conf -r -- flatpak install --system -y flathub

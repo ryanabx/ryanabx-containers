@@ -1,0 +1,11 @@
+[Unit]
+Description=Preinstall Flatpaks Service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/preinstall-flatpaks
+
+
+[Install]
+WantedBy=multi-user.target
