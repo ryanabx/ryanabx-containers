@@ -7,9 +7,9 @@ RUN dnf install -y dnf-plugins-core && \
 # Install KDE Plasma
 RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
-COPY ./ryanabx-bootc/preinstall-flatpaks /usr/bin/preinstall-flatpaks
-COPY ./ryanabx-bootc/preinstall-flatpaks.conf /usr/etc/preinstall-flatpaks.conf
-COPY ./ryanabx-bootc/preinstall-flatpaks.service /usr/lib/systemd/system/preinstall-flatpaks.service
+COPY ./preinstall-flatpaks/preinstall-flatpaks /usr/bin/preinstall-flatpaks
+COPY ./preinstall-flatpaks/preinstall-flatpaks.conf /usr/etc/preinstall-flatpaks.conf
+COPY ./preinstall-flatpaks/preinstall-flatpaks.service /usr/lib/systemd/system/preinstall-flatpaks.service
 
 RUN systemctl enable --system preinstall-flatpaks.service
 
