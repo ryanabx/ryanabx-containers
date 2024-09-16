@@ -9,8 +9,7 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 # NOTE: Run sudo rpm-ostree usroverlay && sudo /sbin/vboxconfig to set up virtualbox
 
 # Install stuff (applications to start)
-RUN rpm-ostree override remove power-profiles-daemon && \
-    rpm-ostree install \
+RUN rpm-ostree install \
     # Git lfs
     git-lfs \
     # Rust stuff
@@ -40,11 +39,11 @@ RUN rpm-ostree override remove power-profiles-daemon && \
     # Code editors
     code vim \
     # Qemu and virt-manager
-    qemu virt-manager \
-    # Tuned!
-    tuned tuned-ppd && \
-    # Enable services
-    systemctl enable tuned.service tuned-ppd.service
+    qemu virt-manager
+    # # Tuned!
+    # tuned tuned-ppd && \
+    # # Enable services
+    # systemctl enable tuned.service tuned-ppd.service
 
 # Add cosmic packages for testing ryanabx-shell
 # RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
