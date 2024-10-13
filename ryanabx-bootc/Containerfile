@@ -46,6 +46,6 @@ RUN dnf remove -y power-profiles-daemon && \
     tuned tuned-ppd && \
     # Cosmic-epoch
     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
-    dnf clean all \
+    dnf clean all && \
     # Enable services
     systemctl enable tuned.service tuned-ppd.service
