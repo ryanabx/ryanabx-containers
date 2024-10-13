@@ -44,11 +44,8 @@ RUN dnf remove -y power-profiles-daemon && \
     qemu virt-manager \
     # Tuned!
     tuned tuned-ppd && \
+    # Cosmic-epoch
+    dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
+    dnf clean all \
     # Enable services
     systemctl enable tuned.service tuned-ppd.service
-
-RUN dnf copr enable -y ryanabx/cosmic-epoch
-RUN dnf install -y cosmic-desktop
-# Add cosmic packages for testing ryanabx-shell
-# RUN wget https://copr.fedorainfracloud.org/coprs/ryanabx/cosmic-epoch/repo/fedora-$(rpm -E %fedora)/ryanabx-cosmic-epoch-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ryanabx-cosmic.repo
-# RUN rpm-ostree install cosmic-desktop
