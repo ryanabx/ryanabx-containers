@@ -6,7 +6,6 @@ on:
 jobs:
   build-iso:
     name: Build ISO
-    needs: build 
     runs-on: ubuntu-22.04
     permissions:
       contents: read
