@@ -9,7 +9,7 @@ RUN dnf install -y dnf-plugins-core && \
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
 # Install COSMIC
-RUN dnf install -y @cosmic-desktop-environment && systemctl enable cosmic-greeter && \
+RUN dnf install -y @cosmic-desktop-environment @container-management && systemctl enable cosmic-greeter && \
     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
     dnf clean all
 
