@@ -12,6 +12,7 @@ RUN dnf install -y dnf-plugins-core && \
 RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak sddm && \
     systemctl enable sddm && \
     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
+    dnf upgrade --refresh -y && \
     dnf clean all
 
 # Import vscode repo
