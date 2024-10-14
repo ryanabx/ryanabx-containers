@@ -1,10 +1,5 @@
 FROM quay.io/fedora/fedora-bootc:41
 
-RUN dnf install -y dnf-plugins-core && \
-    dnf config-manager --save \
-        --setopt=exclude=rootfiles,firefox
-# ,PackageKit,PackageKit-command-not-found
-
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
