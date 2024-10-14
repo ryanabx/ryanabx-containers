@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-base:41
+FROM quay.io/fedora/fedora-minimal:41
 
 RUN dnf install -y dnf-plugins-core && \
     dnf config-manager --save \
