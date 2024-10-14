@@ -1,11 +1,16 @@
 FROM quay.io/fedora/fedora-bootc:41
 
+RUN dnf install -y dnf-plugins-core && \
+    dnf config-manager --save \
+        --setopt=exclude=rootfiles,firefox
+# ,PackageKit,PackageKit-command-not-found
+
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
 # Install COSMIC
-RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak && \
-    systemctl enable cosmic-greeter && \
+RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak sddm && \
+    systemctl enable sddm && \
     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
     dnf clean all
 
