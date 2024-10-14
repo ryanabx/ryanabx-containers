@@ -10,3 +10,5 @@ org.inkscape.Inkscape
 org.libreoffice.LibreOffice
 org.mozilla.firefox
 org.prismlauncher.PrismLauncher
+com.outerwildsmods.owmods_gui
+org.gimp.GIMP
