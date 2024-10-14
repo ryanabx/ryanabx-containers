@@ -5,7 +5,10 @@ RUN dnf install -y dnf-plugins-core && \
         --setopt=exclude=rootfiles,firefox,PackageKit,PackageKit-command-not-found
 
 # Install KDE Plasma
-RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
+# RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
+
+# Install COSMIC
+RUN dnf install -y @cosmic-desktop-environment && systemctl enable cosmic-greeter
 
 # Import vscode repo
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
