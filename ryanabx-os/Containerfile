@@ -5,6 +5,7 @@ FROM quay.io/fedora/fedora-minimal:41
 
 # Install COSMIC
 RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak sddm && \
+    systemctl disable cosmic-greeter && \
     systemctl enable sddm && \
     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
     dnf upgrade --refresh -y && \
