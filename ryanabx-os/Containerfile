@@ -1,17 +1,21 @@
-FROM quay.io/fedora-ostree-desktops/cosmic-atomic:41
+FROM quay.io/fedora-ostree-desktops/base:40
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
 # Install COSMIC
-RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak sddm && \
-    systemctl disable -f cosmic-greeter greetd && \
-    systemctl enable -f sddm && \
-    dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
-    dnf upgrade --refresh -y && \
-    dnf clean all
+# RUN dnf install -y @cosmic-desktop-environment && dnf install -y @container-management && dnf install -y flatpak sddm && \
+#     systemctl disable -f cosmic-greeter greetd && \
+#     systemctl enable -f sddm && \
+#     dnf copr enable -y ryanabx/cosmic-epoch && dnf install -y cosmic-desktop && \
+#     dnf upgrade --refresh -y && \
+#     dnf clean all
 
-RUN ostree container commit
+RUN dnf install -y @container-management
+RUN dnf copr enable -y ryanabx/cosmic-epoch
+RUN dnf install -y cosmic-desktop
+RUN dnf upgrade --refresh -y
+RUN dnf clean all
 
 # Import vscode repo
 # RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
