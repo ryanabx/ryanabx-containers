@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-minimal:41
+FROM quay.io/fedora-ostree-desktops/cosmic-atomic:41
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
