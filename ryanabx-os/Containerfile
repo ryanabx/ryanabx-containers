@@ -16,6 +16,7 @@ RUN dnf copr enable -y ryanabx/cosmic-epoch
 RUN dnf install -y cosmic-desktop
 RUN dnf upgrade --refresh -y
 RUN dnf clean all
+RUN systemctl enable cosmic-greeter
 
 # Import vscode repo
 # RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
