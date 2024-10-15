@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/base:41
+FROM quay.io/fedora-ostree-desktops/silverblue:41
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
@@ -16,7 +16,7 @@ RUN dnf copr enable -y ryanabx/cosmic-epoch
 RUN dnf install -y cosmic-desktop
 RUN dnf upgrade --refresh -y
 RUN dnf clean all
-RUN systemctl enable cosmic-greeter
+RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force gdm
 
 # Import vscode repo
 # RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
