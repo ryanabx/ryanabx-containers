@@ -11,7 +11,7 @@ RUN dnf install -y \
     # Rust stuff
     rust cargo rust-analyzer rustfmt clippy \
     # Dev dependencies
-    wayland-devel libxkbcommon-devel fuse-devel \
+    wayland-devel libxkbcommon-devel fuse-devel libinput-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     lld make automake gcc gcc-c++ clang clang-devel mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
