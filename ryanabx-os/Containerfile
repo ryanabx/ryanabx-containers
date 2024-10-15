@@ -1,4 +1,4 @@
-FROM quay.io/fedora-ostree-desktops/base:40
+FROM quay.io/fedora-ostree-desktops/base:41
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
