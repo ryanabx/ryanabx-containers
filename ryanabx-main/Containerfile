@@ -30,4 +30,6 @@ RUN dnf install -y \
     # cosmic-comp devel
     libseat-devel pixman-devel \
     # KDE devel
-    cmake
+    cmake \
+    # Helix editor, a new favorite
+    helix
