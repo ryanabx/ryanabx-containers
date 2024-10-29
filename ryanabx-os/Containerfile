@@ -16,6 +16,7 @@ RUN dnf install -y @container-management
 RUN dnf copr enable -y ryanabx/cosmic-epoch
 RUN dnf install -y cosmic-desktop \
     tuned tuned-ppd
+RUN dnf copr enable -y lukenukem/asus-linux && dnf install -y supergfxctl && systemctl enable supergfxd.service
 RUN dnf upgrade --refresh -y
 RUN dnf clean all
 RUN systemctl enable cosmic-greeter tuned tuned-ppd
