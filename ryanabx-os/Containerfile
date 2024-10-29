@@ -17,7 +17,7 @@ RUN dnf copr enable -y ryanabx/cosmic-epoch
 RUN dnf install -y cosmic-desktop
 RUN dnf upgrade --refresh -y
 RUN dnf clean all
-RUN systemctl enable --force cosmic-greeter greetd
+RUN systemctl enable cosmic-greeter
 # RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force sddm
 
 # Import vscode repo
