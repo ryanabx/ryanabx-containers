@@ -1,5 +1,5 @@
-FROM quay.io/fedora-ostree-desktops/kinoite:41
-# FROM quay.io/fedora-ostree-desktops/base:41
+# FROM quay.io/fedora-ostree-desktops/kinoite:41
+FROM quay.io/fedora-ostree-desktops/base:41
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
@@ -19,8 +19,8 @@ RUN dnf install -y cosmic-desktop \
 RUN dnf copr enable -y lukenukem/asus-linux && dnf install -y supergfxctl && systemctl enable supergfxd.service
 RUN dnf upgrade --refresh -y
 RUN dnf clean all
-# RUN systemctl enable cosmic-greeter tuned tuned-ppd
-RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force sddm
+RUN systemctl enable cosmic-greeter tuned tuned-ppd
+# RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force sddm
 
 # Not used (not working)
 # RUN dnf install -y kernel-headers kernel-devel dmidecode lm_sensors python3-PyQt6 python3-yaml python3-pip python3-argcomplete python3-darkdetect
