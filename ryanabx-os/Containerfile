@@ -22,13 +22,13 @@ RUN dnf clean all
 RUN systemctl enable cosmic-greeter tuned tuned-ppd
 # RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force sddm
 
-RUN dnf install -y kernel-headers kernel-devel dmidecode lm_sensors python3-PyQt6 python3-yaml python3-pip python3-argcomplete python3-darkdetect
-RUN dnf groupinstall -y "Development Tools"
-RUN dnf group install -y "C Development Tools and Libraries"
+# Not used (not working)
+# RUN dnf install -y kernel-headers kernel-devel dmidecode lm_sensors python3-PyQt6 python3-yaml python3-pip python3-argcomplete python3-darkdetect
+# RUN dnf groupinstall -y "Development Tools"
+# RUN dnf group install -y "C Development Tools and Libraries"
 # Install the following for installation with DKMS
-RUN dnf install -y dkms openssl mokutil
-
-RUN git clone https://github.com/johnfanv2/LenovoLegionLinux.git && cd LenovoLegionLinux/kernel_module && make && make reloadmodule && cd ../.. && rm -rf LenovoLegionLinux
+# RUN dnf install -y dkms openssl mokutil
+# RUN git clone https://github.com/johnfanv2/LenovoLegionLinux.git && cd LenovoLegionLinux/kernel_module && make && make reloadmodule && cd ../.. && rm -rf LenovoLegionLinux
 
 # Import vscode repo
 # RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
