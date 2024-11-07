@@ -2,6 +2,9 @@ FROM quay.io/fedora-ostree-desktops/kinoite:41
 # FROM quay.io/fedora-ostree-desktops/base:41
 # FROM quay.io/fedora-ostree-desktops/cosmic-atomic:41
 
+RUN dnf copr enable -y ryanabx/LenovoLegionLinux && dnf install -y dkms-LenovoLegionLinux \
+    && dnf upgrade --refresh -y && dnf clean all
+
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
 
@@ -13,14 +16,14 @@ FROM quay.io/fedora-ostree-desktops/kinoite:41
 #     dnf upgrade --refresh -y && \
 #     dnf clean all
 
-RUN dnf install -y @container-management
-RUN dnf copr enable -y ryanabx/cosmic-epoch
-RUN dnf install -y --best cosmic-desktop \
-    tuned tuned-ppd
+# RUN dnf install -y @container-management
+# RUN dnf copr enable -y ryanabx/cosmic-epoch
+# RUN dnf install -y --best cosmic-desktop \
+#     tuned tuned-ppd
 # RUN dnf copr enable -y lukenukem/asus-linux && dnf install -y supergfxctl && systemctl enable supergfxd.service
 # RUN dnf copr enable -y mrduarte/LenovoLegionLinux && dnf install -y dkms-LenovoLegionLinux python-LenovoLegionLinux
-RUN dnf upgrade --refresh -y
-RUN dnf clean all
+# RUN dnf upgrade --refresh -y
+# RUN dnf clean all
 # RUN systemctl enable cosmic-greeter tuned tuned-ppd
 # RUN systemctl disable --force cosmic-greeter greetd && systemctl enable --force sddm
 
