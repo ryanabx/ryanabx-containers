@@ -1,6 +1,6 @@
-# FROM quay.io/fedora-ostree-desktops/kinoite:41
+FROM quay.io/fedora-ostree-desktops/kinoite:41
 # FROM quay.io/fedora-ostree-desktops/base:41
-FROM quay.io/fedora-ostree-desktops/cosmic-atomic:41
+# FROM quay.io/fedora-ostree-desktops/cosmic-atomic:41
 
 # Install KDE Plasma
 # RUN dnf install -y @kde-desktop-environment && systemctl enable sddm
