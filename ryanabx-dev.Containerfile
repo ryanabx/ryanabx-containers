@@ -1,3 +1,4 @@
+# SPDX-license-identifier: MIT
 FROM fedora:41
 
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \

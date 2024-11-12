@@ -1,6 +1,8 @@
-Containers for development
+![Logo](res/logo.png)
 
-These containers are primarily for my rust development
+---
+
+This repo contains all of my container files for development, and for my operating system! (See: [bootc](https://github.com/containers/bootc) and [rpm-ostree](https://github.com/coreos/rpm-ostree))
 
 
 ## Bootc containers
