@@ -11,3 +11,6 @@ RUN \
     dnf upgrade --refresh -y --exclude=system-cosmic-config --exclude=firefox --exclude=rootfiles && \
     # Clean dnf
     dnf clean all
+
+# Flatpak install script
+COPY extra/_install-flatpaks /usr/bin/

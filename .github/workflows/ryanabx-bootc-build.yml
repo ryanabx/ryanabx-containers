@@ -20,6 +20,11 @@ jobs:
     strategy:
       fail-fast: false
     steps:
+      - name: Maximize build space
+        uses: ublue-os/remove-unwanted-software@v7
+        with:
+          remove-android: 'true'
+      
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4

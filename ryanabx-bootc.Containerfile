@@ -8,4 +8,5 @@ RUN \
     dnf install -y @kde-desktop-environment @container-management --exclude=firefox --exclude=rootfiles && \
     dnf clean all
 
+# Flatpak install script
 COPY extra/_install-flatpaks /usr/bin/
