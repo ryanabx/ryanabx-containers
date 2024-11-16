@@ -2,7 +2,7 @@
 FROM quay.io/fedora/fedora-bootc:41
 
 # Install other necessities
-RUN << EOF
+RUN <<EOF
     set -eux
     dnf install -y flatpak --exclude=firefox --exclude=rootfiles
     dnf install -y @kde-desktop-environment @container-management --exclude=firefox --exclude=rootfiles

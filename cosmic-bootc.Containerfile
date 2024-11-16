@@ -1,7 +1,7 @@
 # Building with a Fedora base, may be subject to change pending https://github.com/containers/bootc/issues/865
 FROM quay.io/fedora/fedora-bootc:41
 
-RUN << EOF
+RUN <<EOF
     set -eux
     # Install other necessities
     dnf install -y flatpak --exclude=system-cosmic-config --exclude=firefox --exclude=rootfiles
