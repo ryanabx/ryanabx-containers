@@ -10,3 +10,4 @@ RUN \
 
 # Flatpak install script
 COPY extra/_install-flatpaks /usr/bin/
+COPY extra/flatpak-list.txt /usr/share/ryanabx/
