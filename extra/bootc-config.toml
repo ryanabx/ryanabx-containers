@@ -12,5 +12,6 @@ enable = [
     "org.fedoraproject.Anaconda.Modules.Services",
     "org.fedoraproject.Anaconda.Modules.Storage",
     "org.fedoraproject.Anaconda.Modules.Users",
+    "org.fedoraproject.Anaconda.Modules.Timezone",
 ]
 disable = []
