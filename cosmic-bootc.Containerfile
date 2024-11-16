@@ -2,9 +2,9 @@
 FROM quay.io/fedora/fedora-bootc:41
 
 RUN << EOF
+    set -eux
     # Install other necessities
     dnf install -y flatpak --exclude=system-cosmic-config --exclude=firefox --exclude=rootfiles
-
     # Install environment group
     dnf install -y @cosmic-desktop-environment --exclude=system-cosmic-config --exclude=firefox --exclude=rootfiles
     # Install latest git packages
