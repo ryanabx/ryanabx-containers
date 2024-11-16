@@ -1,4 +1,4 @@
-name: ryanabx-bootc-iso
+name: cosmic-bootc-iso
 
 on:
   workflow_dispatch:
@@ -34,10 +34,10 @@ jobs:
           quay.io/centos-bootc/bootc-image-builder:latest \
           --type anaconda-iso \
           --rootfs btrfs \
-          ghcr.io/ryanabx/ryanabx-bootc
+          ghcr.io/ryanabx/cosmic-bootc
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ryanabx-bootc-iso
+          name: cosmic-bootc-iso
           path: output/bootiso/

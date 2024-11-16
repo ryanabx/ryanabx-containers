@@ -1,4 +1,4 @@
-name: ryanabx-dev
+name: Build cosmic-bootc
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'ryanabx-dev.Containerfile'
+      - 'cosmic-bootc.Containerfile'
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
@@ -30,9 +30,9 @@ jobs:
         id: meta
         with:
           images: |
-            ryanabx-dev
+            cosmic-bootc
           labels: |
-            org.opencontainers.image.title=ryanabx-dev
+            org.opencontainers.image.title=cosmic-bootc
             org.opencontainers.image.version=${{ matrix.version }}
             org.opencontainers.image.description=${{ env.description }}
 
@@ -42,8 +42,8 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ryanabx-dev.Containerfile
-          image: ryanabx-dev
+            cosmic-bootc.Containerfile
+          image: cosmic-bootc
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12

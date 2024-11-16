@@ -1,4 +1,4 @@
-name: cosmOS
+name: Build cosmOS
 
 on:
   workflow_dispatch:
