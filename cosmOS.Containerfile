@@ -2,8 +2,9 @@
 # SPDX-license-identifier: MIT
 FROM quay.io/fedora-ostree-desktops/base:41
 
-# Install comps groups
-RUN dnf install -y \
+RUN \
+    # Install comps groups
+    dnf install -y \
     @admin-tools \
     @base-graphical \
     @core \
@@ -21,10 +22,11 @@ RUN dnf install -y \
     @networkmanager-submodules \
     @printing \
     @standard \
-    @vlc
+    @vlc && \
+    # Install copr
+    dnf copr enable -y ryanabx/cosmic-epoch && \
+    dnf install -y cosmic-desktop && \
+    dnf upgrade --refresh -y && \
+    dnf clean all
 
-# Install copr
-RUN dnf copr enable -y ryanabx/cosmic-epoch
-RUN dnf install -y cosmic-desktop
-RUN dnf upgrade --refresh -y
-RUN dnf clean all
+COPY extra/cosmOS_overlay /
