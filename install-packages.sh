@@ -1,37 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 
 dnf install -y \
-    # Code and firefox
     code firefox \
-    # Git lfs
     git git-lfs \
-    # Rust stuff
     rust cargo rust-analyzer rustfmt clippy \
-    # Dev dependencies
     wayland-devel libxkbcommon-devel fuse-devel libinput-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     lld make automake gcc gcc-c++ clang clang-devel mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
-    # Git forge CLIs
     gh pagure-cli \
-    # Fedora packaging stuff
     fedpkg fedora-packager \
-    # Phone dev tools
     android-tools pmbootstrap \
-    # Requirement for bootc image builder
     osbuild-selinux \
-    # Ruby
     ruby ruby-devel \
-    # Node.js
     nodejs \
-    # cosmic-comp devel
     libseat-devel pixman-devel \
-    # KDE devel
     cmake \
-    # Helix editor, a new favorite
     helix
 
 dnf clean all
