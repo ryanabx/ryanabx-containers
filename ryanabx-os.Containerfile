@@ -14,4 +14,4 @@ COPY extra/flatpak-list.txt /usr/share/ryanabx/
 
 # Install packages
 COPY install-packages.sh .
-RUN ./install-packages.sh && rm ./install-packages.sh
+RUN chmod +x ./install-packages.sh && ./install-packages.sh && rm ./install-packages.sh
