@@ -11,7 +11,7 @@ dnf install -y \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     lld make automake gcc gcc-c++ clang clang-devel mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
-    libsoup-devel \
+    libsoup-devel webkit2gtk4.0-devel webkit2gtk4.1-devel \
     gh pagure-cli \
     fedpkg fedora-packager \
     android-tools pmbootstrap \
