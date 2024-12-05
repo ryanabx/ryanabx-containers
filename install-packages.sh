@@ -20,6 +20,7 @@ dnf install -y \
     nodejs \
     libseat-devel pixman-devel \
     cmake \
-    helix
+    helix \
+    mkosi
 
 dnf clean all
