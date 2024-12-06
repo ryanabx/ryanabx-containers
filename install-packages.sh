@@ -21,6 +21,6 @@ dnf install -y \
     libseat-devel pixman-devel \
     cmake \
     helix \
-    mkosi
+    mkosi wget
 
 dnf clean all
