@@ -8,7 +8,7 @@ on:
     paths:
       - 'ryanabx-os.Containerfile'
   schedule:
-    - cron: "0 01 * * *" # 2pm UTC everyday (timed against official fedora container pushes)
+    - cron: "0 02 * * *" # 2pm UTC everyday (timed against official fedora container pushes)
 
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
