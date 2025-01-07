@@ -47,9 +47,9 @@ Types we care about: `qcow2`, `anaconda-iso`
 
 ```shell
 podman run -it \
-    --env DISPLAY=$WAYLAND_DISPLAY \
+    --env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
     --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-    --volume $XDG_RUNTIME_DIR/wayland:/run/wayland:ro \
+    --volume $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/run/$WAYLAND_DISPLAY:ro \
     --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
     --device /dev/dri:/dev/dri \
     ghcr.io/ryanabx/ryanabx-dev:latest
