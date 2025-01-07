@@ -26,7 +26,7 @@ groups = ["wheel"]
 
 Then, run bootc image builder:
 
-```
+```shell
 sudo podman run \
     --rm \
     -it \
@@ -42,3 +42,15 @@ sudo podman run \
 ```
 
 Types we care about: `qcow2`, `anaconda-iso`
+
+## Create a dev container with graphical sharing
+
+```shell
+podman run -it \
+    --env DISPLAY=$WAYLAND_DISPLAY \
+    --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
+    --volume $XDG_RUNTIME_DIR/wayland:/run/wayland:ro \
+    --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    --device /dev/dri:/dev/dri \
+    ghcr.io/ryanabx/ryanabx-dev:latest
+```
