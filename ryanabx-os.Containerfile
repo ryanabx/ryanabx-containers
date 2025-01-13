@@ -1,5 +1,5 @@
 # Building with a Fedora base, may be subject to change pending https://github.com/containers/bootc/issues/865
-FROM quay.io/fedora-ostree-desktops/silverblue:41
+FROM quay.io/fedora-ostree-desktops/kinoite:41
 
 
 # Install other necessities
