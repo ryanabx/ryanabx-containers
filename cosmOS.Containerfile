@@ -1,6 +1,6 @@
 # cosmOS, copyright Ryan Brue <ryanbrue.dev@gmail.com>
 # SPDX-license-identifier: MIT
-FROM quay.io/fedora-ostree-desktops/base:41
+FROM quay.io/fedora-ostree-desktops/base-atomic:41
 
 RUN \
     # Install comps groups
