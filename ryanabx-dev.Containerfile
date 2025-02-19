@@ -1,5 +1,5 @@
 # SPDX-license-identifier: MIT
-FROM fedora:rawhide
+FROM fedora:42
 
 
 # Install packages
