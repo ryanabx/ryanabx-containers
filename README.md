@@ -5,52 +5,22 @@
 This repo contains all of my container files for development, and for my operating system! (See: [bootc](https://github.com/containers/bootc) and [rpm-ostree](https://github.com/coreos/rpm-ostree))
 
 
-## Bootc containers
+# Containers
 
-### How to build an image
+## ghcr.io/ryanabx/ryanabx-dev
 
-Install osbuild-selinux:
-
-```shell
-sudo dnf install -y osbuild-selinux
-```
-
-Create a `./config.toml` in the bootc Containerfile's directory
-
-```toml
-[[customizations.user]]
-name = "ryanbrue"
-password = "password"
-groups = ["wheel"]
-```
-
-Then, run bootc image builder:
+This is my toolbox container. It contains everything I need to develop from an immutable OS. To use this image, run this command:
 
 ```shell
-sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/config.toml:/config.toml:ro \
-    -v $(pwd)/output:/output \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type anaconda-iso \
-    --rootfs btrfs \
-    <image>
+toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
 ```
 
-Types we care about: `qcow2`, `anaconda-iso`
-
-## Create a dev container with graphical sharing
+To run vscode within it, run this:
 
 ```shell
-podman run -it \
-    --env WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-    --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-    --volume $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/run/$WAYLAND_DISPLAY:ro \
-    --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
-    --device /dev/dri:/dev/dri \
-    ghcr.io/ryanabx/ryanabx-dev:latest
+toolbox run code
 ```
+
+## ghcr.io/ryanabx/cosmos:latest
+
+Basically just Fedora COSMIC but with my nightly copr attached. This comes with the latest COSMIC packages before the Fedora upstream gets them! I use this personally for Fedora COSMIC and COSMIC upstream development.

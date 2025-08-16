@@ -1,4 +1,4 @@
-name: Build cosmOS
+name: Build cosmOS Image
 
 on:
   workflow_dispatch:
