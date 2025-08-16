@@ -4,7 +4,7 @@
 # toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
 # OR to run as root (which is needed for stuff like pmbootstrap)
 # sudo toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
-FROM fedora:43
+FROM fedora:42
 
 RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo
 
