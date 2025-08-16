@@ -27,7 +27,7 @@ RUN \
 # C/C++ utils
         gcc gcc-c++ clang clang-devel \
 # Build systems
-        make automake cmake just
+        make automake cmake just \
 # Linux Phone Stuff
         android-tools pmbootstrap \
 # Ruby utils
