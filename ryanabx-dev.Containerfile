@@ -18,6 +18,8 @@ RUN \
         wget \
 # Applications
         code firefox \
+# Icon/Cursor Theme, Fonts
+        breeze-icon-theme breeze-cursor-theme google-noto-sans-fonts \
 # Version Control and Packaging
         git git-lfs \
         gh pagure-cli \
