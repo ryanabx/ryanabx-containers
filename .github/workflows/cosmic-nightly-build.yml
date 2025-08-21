@@ -1,4 +1,4 @@
-name: Build cosmOS Image
+name: Build cosmic-nightly Image
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'cosmOS.Containerfile'
+      - 'Containerfiles/cosmic-nightly.Containerfile'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
 
@@ -38,11 +38,11 @@ jobs:
         id: meta
         with:
           images: |
-            cosmOS
+            cosmic-nightly
           labels: |
-            org.opencontainers.image.title=cosmOS
+            org.opencontainers.image.title=cosmic-nightly
             org.opencontainers.image.version=${{ matrix.version }}
-            org.opencontainers.image.description=${{ env.description }}
+            org.opencontainers.image.description=cosmic-nightly
 
       # Build image using Buildah action
       - name: Build Image
@@ -50,8 +50,8 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            cosmOS.Containerfile
-          image: cosmOS
+            Containerfiles/cosmic-nightly.Containerfile
+          image: cosmic-nightly
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12

@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'ryanabx-dev.Containerfile'
+      - 'Containerfiles/ryanabx-dev.Containerfile'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
 
@@ -42,7 +42,7 @@ jobs:
           labels: |
             org.opencontainers.image.title=ryanabx-dev
             org.opencontainers.image.version=${{ matrix.version }}
-            org.opencontainers.image.description=${{ env.description }}
+            org.opencontainers.image.description=ryanabx-dev
 
       # Build image using Buildah action
       - name: Build Image
@@ -50,7 +50,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ryanabx-dev.Containerfile
+            Containerfiles/ryanabx-dev.Containerfile
           image: ryanabx-dev
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.

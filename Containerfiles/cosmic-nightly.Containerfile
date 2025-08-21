@@ -1,4 +1,4 @@
-# cosmOS, copyright Ryan Brue <ryanbrue.dev@gmail.com>
+# Copyright Ryan Brue <ryanbrue.dev@gmail.com>
 # SPDX-license-identifier: MIT
 FROM quay.io/fedora-ostree-desktops/cosmic-atomic:42
 
