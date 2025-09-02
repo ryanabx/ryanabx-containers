@@ -1,4 +1,4 @@
-![Logo](res/logo.png)
+![Logo](logo.png)
 
 ---
 
