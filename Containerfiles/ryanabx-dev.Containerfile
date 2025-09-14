@@ -51,3 +51,8 @@ RUN \
         osbuild-selinux mkosi \
 # Finally, after installing, clean all
         && dnf clean all
+
+# Build and install mkosi
+RUN \
+    git clone https://github.com/systemd/mkosi /usr/lib/mkosi/ && \
+    ln -s /usr/lib/mkosi/bin/mkosi /usr/bin/mkosi
