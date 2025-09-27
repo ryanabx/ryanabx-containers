@@ -1,0 +1,11 @@
+{
+  "name": "Base Dev",
+  "image": "ghcr.io/ryanabx/ryanabx-dev:latest",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": []
+    }
+  },
+  "remoteUser": "vscode"
+}
