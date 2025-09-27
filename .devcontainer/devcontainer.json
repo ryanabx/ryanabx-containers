@@ -8,7 +8,7 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/src,target=/workspace,type=bind"
+    "source=${localEnv:HOME}/src,target=/workspaces,type=bind"
   ],
   "remoteUser": "0"
 }
