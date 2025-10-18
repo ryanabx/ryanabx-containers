@@ -52,6 +52,10 @@ RUN \
 # Finally, after installing, clean all
         && dnf clean all
 
+# Install ollama
+RUN \
+    curl -fsSL https://ollama.com/install.sh | sh
+
 # Build and install mkosi
 RUN \
     git clone https://github.com/systemd/mkosi /usr/lib/mkosi/ && \
