@@ -45,7 +45,7 @@ RUN \
         squashfs-tools gstreamer1-plugins-base-devel \
         gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
         lld mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
-        libsoup-devel webkit2gtk4.0-devel webkit2gtk4.1-devel \
+        libsoup-devel webkit2gtk4.1-devel \
         libseat-devel pixman-devel \
 # Image building stuff
         osbuild-selinux mkosi \
