@@ -4,7 +4,7 @@
 # toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
 # OR to run as root (which is needed for stuff like pmbootstrap)
 # sudo toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
-FROM fedora:42
+FROM fedora:43
 
 RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo
 
@@ -51,8 +51,3 @@ RUN \
         osbuild-selinux mkosi \
 # Finally, after installing, clean all
         && dnf clean all
-
-# Build and install mkosi
-RUN \
-    git clone https://github.com/systemd/mkosi /usr/lib/mkosi/ && \
-    ln -s /usr/lib/mkosi/bin/mkosi /usr/bin/mkosi
