@@ -16,6 +16,8 @@ RUN \
     dnf install -y \
 # Shell
         zsh \
+# Editor
+        hx \
 # Essentials
         wget \
 # Applications
