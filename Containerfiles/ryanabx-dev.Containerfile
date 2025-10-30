@@ -38,6 +38,8 @@ RUN \
         android-tools pmbootstrap \
 # Ruby utils
         ruby ruby-devel \
+# Perl stuff (originally for building openssl-sys or something in cargo)
+        perl-core \
 # Javascript utils
         nodejs \
 # C# utils
