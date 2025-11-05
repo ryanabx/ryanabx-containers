@@ -55,3 +55,6 @@ RUN \
         osbuild-selinux mkosi \
 # Finally, after installing, clean all
         && dnf clean all
+
+# Set default editor to helix
+ENV EDITOR="hx"
