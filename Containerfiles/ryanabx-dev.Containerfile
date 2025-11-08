@@ -17,7 +17,7 @@ RUN \
 # Shell
         zsh \
 # Editor
-        hx \
+        helix \
 # Essentials
         wget \
 # Applications

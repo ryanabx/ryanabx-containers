@@ -10,5 +10,8 @@
   "mounts": [
     "source=${localEnv:HOME}/src,target=/workspaces,type=bind"
   ],
+  "runArgs": [
+    "--device", "nvidia.com/gpu=all"
+  ],
   "remoteUser": "0"
 }
