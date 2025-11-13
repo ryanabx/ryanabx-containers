@@ -57,10 +57,10 @@ RUN \
         && dnf clean all
 
 # https://github.com/containers/toolbox/issues/235
-RUN cat << 'EOF' > /etc/krb5.conf.d/0_file_ccache
+RUN bash -c 'cat << "EOF" > /etc/krb5.conf.d/0_file_ccache
 [libdefaults]
     default_ccache_name = FILE:/tmp/krb5.ccache
-EOF
+EOF'
 
 # Set default editor to helix
 ENV EDITOR="hx"
