@@ -59,5 +59,9 @@ RUN \
 # https://github.com/containers/toolbox/issues/235
 RUN echo "[libdefaults]" >> /etc/krb5.conf.d/0_file_ccache && echo "    default_ccache_name = FILE:/tmp/krb5.ccache" >> /etc/krb5.conf.d/0_file_ccache
 
+# Additional Language servers
+RUN npm install -g typescript-language-server typescript
+RUN dotnet tool install -g csharp-ls
+
 # Set default editor to helix
 ENV EDITOR="hx"
