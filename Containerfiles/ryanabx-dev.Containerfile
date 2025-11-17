@@ -53,6 +53,8 @@ RUN \
         libseat-devel pixman-devel \
 # Image building stuff
         osbuild-selinux mkosi \
+# For key storage
+        kwallet \
 # Finally, after installing, clean all
         && dnf clean all
 
