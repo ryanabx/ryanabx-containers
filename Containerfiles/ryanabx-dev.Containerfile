@@ -59,7 +59,7 @@ RUN \
         && dnf clean all
 
 # https://github.com/containers/toolbox/issues/235
-RUN echo "[libdefaults]" >> /etc/krb5.conf.d/0_file_ccache && echo "    default_ccache_name = FILE:/tmp/krb5.ccache" >> /etc/krb5.conf.d/0_file_ccache
+RUN echo "[libdefaults]" >> /etc/krb5.conf.d/0_file_ccache && echo "    default_ccache_name = FILE\:/tmp/krb5.ccache" >> /etc/krb5.conf.d/0_file_ccache
 
 # Additional Language servers
 RUN npm install -g typescript-language-server typescript
