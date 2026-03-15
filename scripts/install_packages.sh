@@ -7,46 +7,29 @@ rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 # Install packages
 dnf install -y \
-# Shell
     zsh \
-# Editor
     helix \
-# Essentials
     wget \
-# Applications
-    code firefox \
-# Icon/Cursor Theme, Fonts
+    code \
     breeze-icon-theme breeze-cursor-theme google-noto-sans-fonts \
-# Version Control and Packaging
     git git-lfs \
     gh pagure-cli \
     fedpkg fedora-packager \
-# Rust utils
     rust cargo rust-analyzer rustfmt clippy \
-# C/C++ utils
     gcc gcc-c++ clang clang-devel \
-# Build systems
     make automake cmake just \
-# Linux Phone Stuff
     android-tools pmbootstrap \
-# Ruby utils
     ruby ruby-devel \
-# Perl stuff (originally for building openssl-sys or something in cargo)
     perl-core \
-# Javascript utils
     nodejs \
-# C# utils
     dotnet-sdk-9.0 \
-# A bunch of common libraries
     wayland-devel libxkbcommon-devel fuse-devel libinput-devel \
     squashfs-tools gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     lld mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
     libsoup-devel webkit2gtk4.1-devel \
     libseat-devel pixman-devel flatpak-devel \
-# Image building stuff
     osbuild-selinux mkosi \
-# For key storage
     kwallet
 # Finally, after installing, clean all
 dnf clean all
