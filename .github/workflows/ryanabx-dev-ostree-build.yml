@@ -34,6 +34,11 @@ jobs:
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
+      - name: Configure buildah storage
+        run: |
+          mkdir -p ~/.config/containers
+          printf '[storage]\ndriver="overlay"\n' > ~/.config/containers/storage.conf
+
       # Build metadata
       - name: Image Metadata
         uses: docker/metadata-action@v5
