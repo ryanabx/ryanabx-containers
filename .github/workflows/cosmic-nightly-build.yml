@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - 'Containerfiles/cosmic-nightly.Containerfile'
+      - '.github/workflows/cosmic-nightly-build.yml'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
 
@@ -52,6 +53,8 @@ jobs:
           containerfiles: |
             Containerfiles/cosmic-nightly.Containerfile
           image: cosmic-nightly
+          extra-args: |
+            --format oci
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12

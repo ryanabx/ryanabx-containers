@@ -8,6 +8,7 @@ on:
     paths:
       - 'Containerfiles/ryanabx-dev-ostree.Containerfile'
       - 'scripts/install_packages.sh'
+      - '.github/workflows/ryanabx-dev-ostree-build.yml'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
 
@@ -53,6 +54,8 @@ jobs:
           containerfiles: |
             Containerfiles/ryanabx-dev-ostree.Containerfile
           image: ryanabx-dev-ostree
+          extra-args: |
+            --format oci
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
