@@ -50,7 +50,7 @@ RUN \
         gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
         lld mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
         libsoup-devel webkit2gtk4.1-devel \
-        libseat-devel pixman-devel \
+        libseat-devel pixman-devel flatpak-devel \
 # Image building stuff
         osbuild-selinux mkosi \
 # For key storage
