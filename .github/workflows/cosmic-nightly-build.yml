@@ -52,9 +52,8 @@ jobs:
         with:
           containerfiles: |
             Containerfiles/cosmic-nightly.Containerfile
+          oci: true
           image: cosmic-nightly
-          extra-args: |
-            --format oci
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12

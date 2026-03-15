@@ -53,9 +53,8 @@ jobs:
         with:
           containerfiles: |
             Containerfiles/ryanabx-dev-ostree.Containerfile
+          oci: true
           image: ryanabx-dev-ostree
-          extra-args: |
-            --format oci
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
