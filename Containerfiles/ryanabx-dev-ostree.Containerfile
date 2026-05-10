@@ -4,7 +4,7 @@
 # toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
 # OR to run as root (which is needed for stuff like pmbootstrap)
 # sudo toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
-FROM quay.io/fedora-ostree-desktops/kinoite:43
+FROM quay.io/fedora-ostree-desktops/kinoite:44
 
 # Install packages
 COPY ../scripts/install_packages.sh /tmp/install_packages.sh
