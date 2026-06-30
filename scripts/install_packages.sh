@@ -21,6 +21,7 @@ dnf install -y \
     libsoup-devel webkit2gtk4.1-devel \
     libseat-devel pixman-devel flatpak-devel \
     mkosi \
+    steam-devices \
     rsync
 # Finally, after installing, clean all
 dnf clean all
