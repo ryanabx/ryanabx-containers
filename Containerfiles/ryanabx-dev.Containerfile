@@ -12,9 +12,6 @@ RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo
 COPY ../scripts/install_packages.sh /tmp/install_packages.sh
 RUN chmod +x /tmp/install_packages.sh && /tmp/install_packages.sh
 
-# https://github.com/containers/toolbox/issues/235
-RUN echo "[libdefaults]" >> /etc/krb5.conf.d/0_file_ccache && echo "    default_ccache_name = FILE\:/tmp/krb5.ccache" >> /etc/krb5.conf.d/0_file_ccache
-
 # Additional Language servers
 RUN npm install -g typescript-language-server typescript
 # RUN dotnet tool install -g csharp-ls
