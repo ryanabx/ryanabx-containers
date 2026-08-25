@@ -1,0 +1,49 @@
+# SPDX-license-identifier: MIT
+#
+# local-ostree-container: Build a local ostree container image, rebase
+# onto it if the current or staged deployment is not already, and run
+# `rpm-ostree upgrade`.
+#
+# The Containerfile to build is taken from /etc/rpm-ostree-update/container,
+# which must contain the path to the Containerfile (first line). The service
+# does not run unless that file exists (ConditionPathExists).
+#
+# Any failing step (build, rebase, upgrade) makes the service fail.
+#
+# NOTE: systemd performs $VAR environment-variable expansion on ExecStart
+# lines, so every literal $ intended for the shell is written as $$.
+#
+# Install (single file):
+#   sudo install -m 0644 systemd/local-ostree-container.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable local-ostree-container.service
+#
+[Unit]
+Description=Build local ostree container image, rebase to it, and upgrade
+ConditionPathExists=/etc/rpm-ostree-update/container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'set -eu; \
+CONFIG=/etc/rpm-ostree-update/container; \
+IMAGE=localhost/local-ostree-container:latest; \
+REF=ostree-unverified-image:containers-storage:$$IMAGE; \
+log(){ echo "==> $$*"; }; \
+[ -f "$$CONFIG" ] || { log "ERROR: $$CONFIG does not exist"; exit 1; }; \
+CONTAINERFILE="$$(head -n 1 "$$CONFIG" | tr -d "[[:space:]]")"; \
+[ -n "$$CONTAINERFILE" ] || { log "ERROR: $$CONFIG is empty"; exit 1; }; \
+[ -f "$$CONTAINERFILE" ] || { log "ERROR: Containerfile $$CONTAINERFILE does not exist"; exit 1; }; \
+log "Building $$IMAGE from $$CONTAINERFILE ..."; \
+podman build --pull=newer -t "$$IMAGE" -f "$$CONTAINERFILE" "$$(dirname "$$CONTAINERFILE")"; \
+log "Checking current and staged deployments ..."; \
+if ! rpm-ostree status | grep -q "^[[:space:]]*$$REF$$"; then \
+  log "Not on $$REF; rebasing ..."; \
+  rpm-ostree rebase "$$REF"; \
+else \
+  log "Already on $$REF; skipping rebase."; \
+fi; \
+log "Running rpm-ostree upgrade ..."; \
+rpm-ostree upgrade; \
+log "Done. Reboot to apply staged changes."'
