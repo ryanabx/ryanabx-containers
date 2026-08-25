@@ -1,27 +1,59 @@
 #!/bin/sh
+# Install packages
 
-# Install common packages across ryanabx-dev and ryanabx-bootc
+# Text editors
 dnf install -y \
-    helix \
+    helix
+
+# VCS and package collaboration
+dnf install -y \
     git git-lfs \
-    wget \
     fedpkg fedora-packager \
-    gh pagure-cli \
+    gh pagure-cli
+
+# Rust
+dnf install -y \
     rust cargo rust-analyzer rustfmt clippy \
+    mold
+
+# C/C++ compilers and build systems
+dnf install -y \
     gcc gcc-c++ clang clang-devel \
     make automake cmake just \
-    android-tools pmbootstrap \
+    lld binutils binutils-devel binutils-gold \
+    kernel-devel glibc-devel
+
+# Mobile and embedded
+dnf install -y \
+    android-tools
+
+# JavaScript, .NET, and Perl
+dnf install -y \
     nodejs npm \
     dotnet-sdk-10.0 \
-    perl-core \
+    perl-core
+
+# GUI and Wayland development libraries
+dnf install -y \
     wayland-devel libxkbcommon-devel fuse-devel libinput-devel \
-    squashfs-tools gstreamer1-plugins-base-devel \
+    gstreamer1-plugins-base-devel \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
-    lld mold kernel-devel glibc-devel binutils binutils-devel binutils-gold \
     libsoup-devel webkit2gtk4.1-devel \
-    libseat-devel pixman-devel flatpak-devel \
+    libseat-devel pixman-devel flatpak-devel
+
+# Misc tools
+dnf install -y \
+    squashfs-tools \
     mkosi \
+    wget \
+    rsync \
+    htop \
+    dtc
+
+# Gaming
+dnf install -y \
     steam-devices \
-    rsync
+    vkmark
+
 # Finally, after installing, clean all
 dnf clean all
