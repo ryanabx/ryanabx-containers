@@ -48,7 +48,8 @@ dnf install -y \
     wget \
     rsync \
     htop \
-    dtc
+    dtc \
+    tcpdump
 
 # Gaming
 dnf install -y \
