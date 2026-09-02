@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - 'Containerfiles/ryanabx-dev.Containerfile'
-      - 'scripts/install_packages.sh'
+      - 'Containerfiles/install_packages.sh'
       - '.github/workflows/ryanabx-dev-build.yml'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
