@@ -21,7 +21,7 @@ dnf install -y \
     gcc gcc-c++ clang clang-devel \
     make automake cmake just \
     lld binutils binutils-devel binutils-gold \
-    kernel-devel glibc-devel
+    kernel-devel glibc-devel ccache
 
 # Mobile and embedded
 dnf install -y \
@@ -40,6 +40,12 @@ dnf install -y \
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel \
     libsoup-devel webkit2gtk4.1-devel \
     libseat-devel pixman-devel flatpak-devel
+
+# OpenRCT2 missing dev libraries
+dnf install -y \
+    sdl2-compat-devel openssl-libs \
+    libzip-devel libicu-devel dr_flac-devel \
+    libvorbis-devel json-devel innoextract
 
 # Misc tools
 dnf install -y \
