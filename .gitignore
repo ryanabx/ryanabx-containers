@@ -2,3 +2,4 @@
 output/
 */config.toml
 config.toml
+*.log
