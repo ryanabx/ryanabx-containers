@@ -9,7 +9,7 @@ FROM fedora:44
 RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo
 
 # Install packages
-COPY install_packages.sh /tmp/install_packages.sh
+COPY Containerfiles/install_packages.sh /tmp/install_packages.sh
 RUN chmod +x /tmp/install_packages.sh && /tmp/install_packages.sh
 
 # Additional Language servers
