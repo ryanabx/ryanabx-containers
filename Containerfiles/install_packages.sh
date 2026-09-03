@@ -9,7 +9,7 @@ dnf install -y \
 dnf install -y \
     git git-lfs \
     fedpkg fedora-packager \
-    gh pagure-cli
+    gh pagure-cli b4
 
 # Rust
 dnf install -y \
