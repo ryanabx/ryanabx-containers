@@ -44,8 +44,8 @@ dnf install -y \
 # OpenRCT2 missing dev libraries
 dnf install -y \
     sdl2-compat-devel openssl-libs \
-    libzip-devel libicu-devel dr_flac-devel \
-    libvorbis-devel json-devel innoextract
+    libzip-devel libicu-devel \
+    libvorbis-devel json-devel innoextract flac-devel
 
 # Misc tools
 dnf install -y \
