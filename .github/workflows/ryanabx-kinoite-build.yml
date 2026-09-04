@@ -22,6 +22,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
     strategy:
       fail-fast: false
     steps:
@@ -102,3 +103,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Sign with keyless Sigstore using GitHub's OIDC identity (no long-lived key).
+      # The signature is stored as a sibling OCI artifact in the image repo.
+      - name: Sign images with cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-action@v10
+        env:
+          CO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COSIGN_REPOSITORY: ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite
+        with:
+          images: |
+            ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite@${{ steps.build_image.outputs.digest }}
+          sign_opts: |
+            --yes

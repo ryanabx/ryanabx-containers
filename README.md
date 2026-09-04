@@ -138,11 +138,42 @@ sudo ostree admin deploy --image=ghcr.io/ryanabx/cosmic-nightly:latest
 
 ---
 
+# Verifying Signatures
+
+Every image published by the workflows in [`.github/workflows/`](.github/workflows)
+is signed with [cosign](https://docs.sigstore.dev/cosign) using
+[keyless Sigstore](https://docs.sigstore.dev/overview): the signature is made
+with GitHub's OIDC identity for this repository (no long-lived signing key),
+and is stored as a sibling OCI artifact next to the image on GHCR.
+
+Verify a signature with:
+
+```shell
+cosign verify \
+  --certificate-identity ".*ryanabx-containers.*" \
+  --certificate-oidc-issuer "https://github.com" \
+  ghcr.io/ryanabx/ryanabx-kinoite:latest
+```
+
+Replace the image reference as needed (`ryanabx-dev`, `cosmic-nightly`). A
+successful run prints the embedded GitHub certificate, which includes the
+repository and workflow that produced the image. Verify against a digest
+(`ghcr.io/ryanabx/ryanabx-kinoite@sha256:…`) to pin an exact build.
+
+> [!NOTE]
+> These signatures are not checked automatically by
+> `rpm-ostree`/`ostree` when pulling from `ostree-unverified-registry:`;
+> run `cosign verify` yourself (e.g. before a `rebase` or in an update
+> script) if you want an extra trust gate.
+
+---
+
 # Development
 
 - Container definitions live in [`Containerfiles/`](Containerfiles/).
 - CI workflows live in [`.github/workflows/`](.github/workflows); images
-  are rebuilt on push and on a daily cron, and published to GHCR.
+  are rebuilt on push and on a daily cron, published to GHCR, and signed
+  with keyless Sigstore (see [Verifying Signatures](#verifying-signatures)).
 - Notes on building rpm-ostree images locally with `bootc` live in
   [`docs/notes.md`](docs/notes.md).
 
