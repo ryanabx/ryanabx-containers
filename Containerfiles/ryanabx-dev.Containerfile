@@ -13,7 +13,7 @@ COPY Containerfiles/install_packages.sh /tmp/install_packages.sh
 RUN chmod +x /tmp/install_packages.sh && /tmp/install_packages.sh
 
 # Additional Language servers
-RUN npm install -g typescript-language-server typescript
+RUN npm install -g --no-audit --no-fund typescript-language-server typescript
 # RUN dotnet tool install -g csharp-ls
 
 # Set default editor to helix

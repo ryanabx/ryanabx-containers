@@ -38,6 +38,17 @@ jobs:
           mkdir -p ~/.config/containers
           printf '[storage]\ndriver="overlay"\n' > ~/.config/containers/storage.conf
 
+      # Cache buildah layer storage and dnf metadata between runs.
+      # Buildah's layer cache keys the first layer on the base image's digest,
+      # so a republished base image still busts the cache correctly.
+      - name: Cache buildah storage
+        uses: actions/cache@v4
+        with:
+          path: |
+            $HOME/.local/share/containers/storage
+            $HOME/.cache/dnf
+          key: buildah-cosmic-nightly-${{ hashFiles('Containerfiles/cosmic-nightly.Containerfile') }}
+
       # Build metadata
       - name: Image Metadata
         uses: docker/metadata-action@v5
