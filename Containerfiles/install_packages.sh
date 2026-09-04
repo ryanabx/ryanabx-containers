@@ -21,11 +21,12 @@ dnf install -y \
     gcc gcc-c++ clang clang-devel \
     make automake cmake just \
     lld binutils binutils-devel binutils-gold \
-    kernel-devel glibc-devel ccache
+    kernel-devel glibc-devel ccache \
+    swig
 
 # Mobile and embedded
 dnf install -y \
-    android-tools
+    android-tools busybox libfdt-devel
 
 # JavaScript, .NET, and Perl
 dnf install -y \
@@ -55,7 +56,8 @@ dnf install -y \
     rsync \
     htop \
     dtc \
-    tcpdump
+    tcpdump \
+    yamllint
 
 # Gaming
 dnf install -y \
