@@ -76,9 +76,8 @@ jobs:
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
         id: registry_case
-        uses: ASzc/change-string-case-action@v7
-        with:
-          string: ${{ env.IMAGE_REGISTRY }}
+        run: |
+          echo "lowercase=$(echo "${{ env.IMAGE_REGISTRY }}" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
       
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v3
