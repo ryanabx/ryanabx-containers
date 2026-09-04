@@ -105,14 +105,13 @@ jobs:
 
       # Sign with keyless Sigstore using GitHub's OIDC identity (no long-lived key).
       # The signature is stored as a sibling OCI artifact in the image repo.
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@v4.1.2
+
       - name: Sign images with cosign
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-action@v10
         env:
           CO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COSIGN_REPOSITORY: ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-dev
-        with:
-          images: |
-            ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-dev@${{ steps.build_image.outputs.digest }}
-          sign_opts: |
-            --yes
+        run: cosign sign --yes ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-dev@${{ steps.build_image.outputs.digest }}
