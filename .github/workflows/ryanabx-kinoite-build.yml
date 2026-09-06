@@ -17,7 +17,7 @@ env:
 
 jobs:
   build:
-    name: Build 
+    name: Build
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -30,7 +30,7 @@ jobs:
         uses: ublue-os/remove-unwanted-software@v7
         with:
           remove-android: 'true'
-      
+
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v5
@@ -78,7 +78,7 @@ jobs:
         id: registry_case
         run: |
           echo "lowercase=$(echo "${{ env.IMAGE_REGISTRY }}" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
-      
+
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v3
         id: push
@@ -105,13 +105,13 @@ jobs:
 
       # Sign with keyless Sigstore using GitHub's OIDC identity (no long-lived key).
       # The signature is stored as a sibling OCI artifact in the image repo.
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@v4.1.2
+      # - name: Install cosign
+      #   if: github.event_name != 'pull_request'
+      #   uses: sigstore/cosign-installer@v4.1.2
 
-      - name: Sign images with cosign
-        if: github.event_name != 'pull_request'
-        env:
-          CO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COSIGN_REPOSITORY: ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite
-        run: cosign sign --yes ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite@${{ steps.build_image.outputs.digest }}
+      # - name: Sign images with cosign
+      #   if: github.event_name != 'pull_request'
+      #   env:
+      #     CO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     COSIGN_REPOSITORY: ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite
+      #   run: cosign sign --yes ghcr.io/${{ steps.registry_case.outputs.lowercase }}/ryanabx-kinoite@${{ steps.build_image.outputs.digest }}
