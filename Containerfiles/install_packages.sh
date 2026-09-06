@@ -10,7 +10,7 @@ packages=(
     # Text editors
     helix
     # VCS and package collaboration
-    git git-lfs
+    git git-lfs git-email
     fedpkg fedora-packager
     gh pagure-cli b4
     # Rust
