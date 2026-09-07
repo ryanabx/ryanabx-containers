@@ -21,7 +21,7 @@ packages=(
     make automake cmake just
     lld binutils binutils-devel binutils-gold
     kernel-devel glibc-devel ccache
-    swig
+    swig python3-devel
     # Mobile and embedded
     android-tools busybox libfdt-devel
     # JavaScript, .NET, and Perl
