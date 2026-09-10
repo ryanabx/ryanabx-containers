@@ -50,6 +50,10 @@ packages=(
     # Gaming
     steam-devices
     vkmark
+    # Virtualization
+    virt-manager
+    qemu-system-aarch64
+    qemu-system-riscv
 )
 
 # Execute dnf by expanding the array
