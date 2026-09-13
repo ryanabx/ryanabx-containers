@@ -12,7 +12,9 @@ packages=(
     # VCS and package collaboration
     git git-lfs git-email
     fedpkg fedora-packager
-    gh pagure-cli b4
+    gh pagure-cli
+    # Helpers for the patch-based workflow (Linux Kernel)
+    b4 lei
     # Rust
     rust cargo rust-analyzer rustfmt clippy
     mold
