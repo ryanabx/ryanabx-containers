@@ -35,7 +35,7 @@ packages=(
     gstreamer1-plugins-base-devel
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel
     libsoup-devel webkit2gtk4.1-devel
-    libseat-devel pixman-devel flatpak-devel
+    libseat-devel pixman-devel flatpak-devel alsa-lib-devel
     # OpenRCT2 missing dev libraries
     sdl2-compat-devel openssl-libs
     libzip-devel libicu-devel
