@@ -31,7 +31,8 @@ packages=(
     dotnet-sdk-10.0
     perl-core
     # GUI and Wayland development libraries
-    wayland-devel libxkbcommon-devel fuse-devel libinput-devel
+    wayland-devel libxkbcommon-devel libxkbcommon-x11-devel
+    fuse-devel libinput-devel
     gstreamer1-plugins-base-devel
     gdk-pixbuf2-devel pango-devel gtk3-devel glib2-devel
     libsoup-devel webkit2gtk4.1-devel
