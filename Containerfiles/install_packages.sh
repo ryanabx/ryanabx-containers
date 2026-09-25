@@ -50,6 +50,8 @@ packages=(
     dtc
     tcpdump
     yamllint
+    # VPN
+    tailscale
     # Gaming
     steam-devices
     vkmark
