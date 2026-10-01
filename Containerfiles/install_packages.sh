@@ -47,6 +47,8 @@ packages=(
     wget
     rsync
     htop
+    btop
+    lm_sensors
     dtc
     tcpdump
     yamllint
