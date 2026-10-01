@@ -55,6 +55,7 @@ packages=(
     # Gaming
     steam-devices
     vkmark
+    igt-gpu-tools
     # Virtualization
     virt-manager
     qemu-system-aarch64
