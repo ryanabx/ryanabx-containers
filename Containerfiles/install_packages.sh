@@ -41,14 +41,16 @@ packages=(
     sdl2-compat-devel openssl-libs
     libzip-devel libicu-devel
     libvorbis-devel json-devel innoextract flac-devel
+    # Hardware monitoring tools
+    htop
+    btop
+    lm_sensors
+    nvtop
     # Misc tools
     squashfs-tools
     mkosi
     wget
     rsync
-    htop
-    btop
-    lm_sensors
     dtc
     tcpdump
     yamllint
