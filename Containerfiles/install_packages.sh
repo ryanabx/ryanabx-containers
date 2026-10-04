@@ -18,6 +18,8 @@ packages=(
     # Rust
     rust cargo rust-analyzer rustfmt clippy
     mold
+    # Go
+    go
     # C/C++ compilers and build systems
     gcc gcc-c++ clang clang-devel
     make automake cmake just
