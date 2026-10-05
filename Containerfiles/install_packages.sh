@@ -21,9 +21,12 @@ packages=(
     # Go
     go
     # C/C++ compilers and build systems
+    # Most of it is for kernel devel
     gcc gcc-c++ clang clang-devel
     make automake cmake just
     lld binutils binutils-devel binutils-gold
+    elfutils elfutils-devel elfutils-libs
+    elfutils-libelf elfutils-libelf-devel
     kernel-devel glibc-devel ccache
     swig python3-devel
     # Mobile and embedded
