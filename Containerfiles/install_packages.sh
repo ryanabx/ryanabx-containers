@@ -29,6 +29,16 @@ packages=(
     elfutils-libelf elfutils-libelf-devel
     kernel-devel glibc-devel ccache
     swig python3-devel
+    # Other kernel deps
+    asciidoc audit-libs-devel bindgen-cli
+    bpftool capstone-devel dwarves glibc-static
+    java-25-openjdk-devel kernel-rpm-macros libasan-static
+    libbabeltrace-devel libbabeltrace2-devel libbpf-devel
+    libcap-devel libcap-ng-devel libmnl-devel libnl3-devel
+    libpfm-devel libtraceevent-devel libtracefs-devel libubsan
+    liburing-devel newt-devel nss-tools numactl-devel
+    pciutils-devel perl-generators pesign python3-docutils
+    python3-jsonschema xmlto xxd
     # Mobile and embedded
     android-tools busybox libfdt-devel
     # JavaScript, .NET, and Perl
