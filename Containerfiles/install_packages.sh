@@ -45,6 +45,8 @@ packages=(
     nodejs npm
     dotnet-sdk-10.0
     perl-core
+    # Media codecs
+    openh264
     # GUI and Wayland development libraries
     wayland-devel libxkbcommon-devel libxkbcommon-x11-devel
     fuse-devel libinput-devel
