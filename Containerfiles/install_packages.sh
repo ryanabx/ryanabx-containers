@@ -57,9 +57,6 @@ packages=(
     sdl2-compat-devel openssl-libs
     libzip-devel libicu-devel
     libvorbis-devel json-devel innoextract flac-devel
-    # Video encoding (used by KRDP). NVIDIA has no VA-API encoder, so KRDP
-    # falls back to software openh264 there.
-    openh264 libva-utils
     # Hardware monitoring tools
     htop
     btop
@@ -86,25 +83,10 @@ packages=(
     qemu-system-riscv
 )
 
-# RPM Fusion ships the VA-API drivers with the H.264/HEVC encoders that
-# Fedora strips out
-dnf install -y \
-    "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
-    "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
-
 # Execute dnf by expanding the array
 dnf install -y \
     --setopt=deltarpm=False \
     "${packages[@]}"
-
-# Intel's full VA-API driver conflicts with (rather than obsoletes)
-# Fedora's, so it has to be swapped in
-dnf swap -y libva-intel-media-driver intel-media-driver
-
-# Freeworld Mesa enables H.264/HEVC VA-API encoding on AMD. It pins the exact
-# Mesa version, so it's kept out of the main transaction: if RPM Fusion lags
-# behind a Fedora Mesa update, only this install fails.
-dnf install -y mesa-va-drivers-freeworld
 
 # Finally, after installing, clean all
 dnf clean all
