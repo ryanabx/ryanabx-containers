@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/ryanabx/ryanabx-containers" alt="License" />
-  <img src="https://img.shields.io/badge/base-Fedora%2044-fedorawhite?labelColor=f31226" alt="Base" />
+  <img src="https://img.shields.io/badge/base-Fedora%2045-fedorawhite?labelColor=f31226" alt="Base" />
   <img src="https://img.shields.io/badge/registry-ghcr.io-5c6ac4?logo=github" alt="Registry" />
   <img src="https://img.shields.io/badge/container--runtime-podman-blue?logo=podman" alt="Runtime" />
 </p>
@@ -36,9 +36,9 @@ This repository contains all of my container definitions, built by
 
 | Image | Type | Base | Description |
 | --- | --- | --- | --- |
-| [ryanabx/ryanabx-dev](#ghcrioryanabxryanabx-dev) | Toolbox | `fedora:44` | My personal development toolbox |
-| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:44` | Kinoite + my package set |
-| [ryanabx/cosmic-nightly](#ghcrioryanabxcosmic-nightly) | OS image | `fedora-ostree-desktops/cosmic-atomic:44` | Fedora COSMIC with my nightly COPR |
+| [ryanabx/ryanabx-dev](#ghcrioryanabxryanabx-dev) | Toolbox | `fedora:45` | My personal development toolbox |
+| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:45` | Kinoite + my package set |
+| [ryanabx/cosmic-nightly](#ghcrioryanabxcosmic-nightly) | OS image | `fedora-ostree-desktops/cosmic-atomic:45` | Fedora COSMIC with my nightly COPR |
 
 ---
 
@@ -48,7 +48,7 @@ This repository contains all of my container definitions, built by
 
 <p>
   <img src="https://img.shields.io/badge/ghcr.io%2Fryanabx-ryanabx--dev-5c6ac4?logo=github" alt="GHCR" />
-  <img src="https://img.shields.io/badge/base-fedora%3A44-fedorawhite?labelColor=f31226" alt="Base" />
+  <img src="https://img.shields.io/badge/base-fedora%3A45-fedorawhite?labelColor=f31226" alt="Base" />
   <img src="https://img.shields.io/github/actions/workflow/status/ryanabx/ryanabx-containers/ryanabx-dev-build.yml" alt="Build status" />
 </p>
 
@@ -89,7 +89,7 @@ toolbox run code
 
 <p>
   <img src="https://img.shields.io/badge/ghcr.io%2Fryanabx-ryanabx--kinoite-5c6ac4?logo=github" alt="GHCR" />
-  <img src="https://img.shields.io/badge/base-kinoite%3A44-fedorawhite?labelColor=f31226" alt="Base" />
+  <img src="https://img.shields.io/badge/base-kinoite%3A45-fedorawhite?labelColor=f31226" alt="Base" />
   <img src="https://img.shields.io/github/actions/workflow/status/ryanabx/ryanabx-containers/ryanabx-kinoite-build.yml" alt="Build status" />
 </p>
 
@@ -119,7 +119,7 @@ RUN dnf install -y <something>
 
 <p>
   <img src="https://img.shields.io/badge/ghcr.io%2Fryanabx-cosmic--nightly-5c6ac4?logo=github" alt="GHCR" />
-  <img src="https://img.shields.io/badge/base-cosmic--atomic%3A44-fedorawhite?labelColor=f31226" alt="Base" />
+  <img src="https://img.shields.io/badge/base-cosmic--atomic%3A45-fedorawhite?labelColor=f31226" alt="Base" />
   <img src="https://img.shields.io/github/actions/workflow/status/ryanabx/ryanabx-containers/cosmic-nightly-build.yml" alt="Build status" />
 </p>
 

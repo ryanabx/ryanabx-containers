@@ -1,6 +1,6 @@
 # SPDX-license-identifier: MIT
 
-FROM quay.io/fedora-ostree-desktops/kinoite:44
+FROM quay.io/fedora-ostree-desktops/kinoite:45
 
 # Install packages
 COPY Containerfiles/install_packages.sh /tmp/install_packages.sh
