@@ -40,7 +40,7 @@ packages=(
     pciutils-devel perl-generators pesign python3-docutils
     python3-jsonschema xmlto xxd
     # Mobile and embedded
-    android-tools busybox libfdt-devel
+    android-tools busybox libfdt-devel picocom
     # JavaScript, .NET, and Perl
     nodejs npm
     dotnet-sdk-10.0
@@ -72,6 +72,7 @@ packages=(
     rsync
     dtc
     tcpdump
+    dos2unix
     yamllint
     # VPN
     tailscale
