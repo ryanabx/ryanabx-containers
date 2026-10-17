@@ -6,8 +6,6 @@
 # sudo toolbox create -i ghcr.io/ryanabx/ryanabx-dev:latest
 FROM fedora:45
 
-RUN rm /etc/yum.repos.d/fedora-cisco-openh264.repo
-
 # Install packages
 COPY Containerfiles/install_packages.sh /tmp/install_packages.sh
 RUN chmod +x /tmp/install_packages.sh && /tmp/install_packages.sh
