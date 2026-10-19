@@ -10,7 +10,7 @@ packages=(
     # Text editors
     helix
     # VCS and package collaboration
-    git git-lfs git-email
+    git git-lfs git-email git-clang-format
     fedpkg fedora-packager
     gh pagure-cli
     # Helpers for the patch-based workflow (Linux Kernel)
@@ -63,6 +63,7 @@ packages=(
     lm_sensors
     nvtop
     # Misc tools
+    perf
     squashfs-tools
     mkosi
     wget
@@ -77,8 +78,13 @@ packages=(
     steam-devices
     vkmark
     igt-gpu-tools
+    # Cross compilation
+    qemu-user-static-arm
+    qemu-user-static-aarch64
+    qemu-user-static-riscv
     # Virtualization
     virt-manager
+    qemu-system-arm
     qemu-system-aarch64
     qemu-system-riscv
 )
