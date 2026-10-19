@@ -63,6 +63,7 @@ packages=(
     lm_sensors
     nvtop
     # Misc tools
+    sparse valgrind
     perf
     squashfs-tools
     mkosi
