@@ -84,7 +84,6 @@ packages=(
     qemu-user-static-aarch64
     qemu-user-static-riscv
     # Virtualization
-    virt-manager
     qemu-system-arm
     qemu-system-aarch64
     qemu-system-riscv
