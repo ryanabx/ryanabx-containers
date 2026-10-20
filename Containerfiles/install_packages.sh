@@ -88,9 +88,6 @@ packages=(
     qemu-system-arm
     qemu-system-aarch64
     qemu-system-riscv
-    # Python
-    python3-pyserial
-    python3-pyusb
 )
 
 # Execute dnf by expanding the array
