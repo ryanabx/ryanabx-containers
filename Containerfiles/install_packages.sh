@@ -83,6 +83,8 @@ packages=(
     qemu-user-static-arm
     qemu-user-static-aarch64
     qemu-user-static-riscv
+    gcc-aarch64-linux-gnu
+    binutils-aarch64-linux-gnu
     # Virtualization
     qemu-system-arm
     qemu-system-aarch64
