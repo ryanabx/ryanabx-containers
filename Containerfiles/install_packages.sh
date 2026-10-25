@@ -14,7 +14,8 @@ packages=(
     fedpkg fedora-packager
     gh pagure-cli
     # Helpers for the patch-based workflow (Linux Kernel)
-    b4 lei
+    # Install b4 with `pipx install b4`
+    lei pipx
     # Rust
     rust cargo rust-analyzer rustfmt clippy
     mold
