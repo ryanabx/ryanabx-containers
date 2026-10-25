@@ -73,6 +73,8 @@ packages=(
     tcpdump
     dos2unix
     yamllint
+    # TCP Connections (Used for mobile linux dev)
+    telnet nmap-ncat
     # VPN
     tailscale
     # Gaming
