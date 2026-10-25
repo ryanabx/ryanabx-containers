@@ -13,9 +13,9 @@ packages=(
     git git-lfs git-email git-clang-format
     fedpkg fedora-packager
     gh pagure-cli
-    # Helpers for the patch-based workflow (Linux Kernel)
-    # Install b4 with `pipx install b4`
-    lei pipx
+    lei
+    # For b4, `pipx install b4`
+    libgit2_1.9-devel pipx
     # Rust
     rust cargo rust-analyzer rustfmt clippy
     mold
