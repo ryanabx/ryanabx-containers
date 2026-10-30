@@ -37,7 +37,7 @@ This repository contains all of my container definitions, built by
 | Image | Type | Base | Description |
 | --- | --- | --- | --- |
 | [ryanabx/ryanabx-dev](#ghcrioryanabxryanabx-dev) | Toolbox | `fedora:45` | My personal development toolbox |
-| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:45` | Kinoite + my package set |
+| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:45` | Kinoite + my package set (stable + `rawhide` variant) |
 | [ryanabx/cosmic-nightly](#ghcrioryanabxcosmic-nightly) | OS image | `fedora-ostree-desktops/cosmic-atomic:45` | Fedora COSMIC with my nightly COPR |
 
 ---
@@ -98,6 +98,13 @@ top of [Fedora Kinoite](https://docs.fedoraproject.org/en-US/echo-desktop/kinoit
 with the extra packages I use installed on top. This is the image I use
 for my day-to-day operating system!
 
+### Tags
+
+| Tag | Base image | Notes |
+| --- | --- | --- |
+| `latest` | `fedora-ostree-desktops/kinoite:45` | Current stable Fedora release |
+| `rawhide` | `fedora-ostree-desktops/kinoite:rawhide` | Tracks Fedora's development branch — rebuilt daily, expect breakage |
+
 ### Usage
 
 On an existing rpm-ostree machine, you can deploy this image as the
@@ -105,6 +112,12 @@ system:
 
 ```shell
 sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ryanabx/ryanabx-kinoite:latest
+```
+
+or deploy the rawhide variant:
+
+```shell
+sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ryanabx/ryanabx-kinoite:rawhide
 ```
 
 or use it as a base layer for your own

@@ -1,6 +1,8 @@
 # SPDX-license-identifier: MIT
 
-FROM quay.io/fedora-ostree-desktops/kinoite:45
+# Base release: a stable Fedora version (e.g. 45) or "rawhide"
+ARG FEDORA_VERSION=45
+FROM quay.io/fedora-ostree-desktops/kinoite:${FEDORA_VERSION}
 
 # Install packages
 COPY Containerfiles/install_packages.sh /tmp/install_packages.sh

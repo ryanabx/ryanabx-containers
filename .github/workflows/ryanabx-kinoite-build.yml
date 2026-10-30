@@ -25,6 +25,14 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false
+      # Build one image variant per row: the current stable Fedora release
+      # (tagged "latest") and a rawhide tracking build (tagged "rawhide").
+      matrix:
+        include:
+          - version: "45"
+            tag: "latest"
+          - version: "rawhide"
+            tag: "rawhide"
     steps:
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v7
@@ -49,7 +57,7 @@ jobs:
           path: |
             $HOME/.local/share/containers/storage
             $HOME/.cache/dnf
-          key: buildah-kinoite-${{ hashFiles('Containerfiles/ryanabx-kinoite.Containerfile', 'Containerfiles/install_packages.sh') }}
+          key: buildah-kinoite-${{ matrix.version }}-${{ hashFiles('Containerfiles/ryanabx-kinoite.Containerfile', 'Containerfiles/install_packages.sh') }}
 
       # Build metadata
       - name: Image Metadata
@@ -57,7 +65,7 @@ jobs:
         id: meta
         with:
           images: |
-            ryanabx-kinoite
+            ryanabx-kinoite:${{ matrix.tag }}
           labels: |
             org.opencontainers.image.title=ryanabx-kinoite
             org.opencontainers.image.version=${{ matrix.version }}
@@ -71,6 +79,9 @@ jobs:
           containerfiles: |
             Containerfiles/ryanabx-kinoite.Containerfile
           image: ryanabx-kinoite
+          tags: ${{ matrix.tag }}
+          build-args: |
+            FEDORA_VERSION=${{ matrix.version }}
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
