@@ -77,11 +77,28 @@ fi
 
 # Keep the in-kernel NVIDIA drivers (nouveau, and the Rust nova-core/
 # nova-drm, not built by Fedora's kernel today) from grabbing the GPU.
-# Applied on deploy by bootc; see README for applying them manually.
-mkdir -p /usr/lib/bootc/kargs.d
-cat > /usr/lib/bootc/kargs.d/00-nvidia.toml <<'EOF'
-kargs = ["rd.driver.blacklist=nouveau,nova_core,nova_drm", "modprobe.blacklist=nouveau,nova_core,nova_drm"]
+#
+# This is done in the image rather than with kernel arguments: bootc's
+# /usr/lib/bootc/kargs.d is only applied by `bootc switch/upgrade`, not by
+# `rpm-ostree rebase/upgrade`. Both, however, boot the initramfs shipped in
+# the image, and the base image's initramfs includes nouveau. So blacklist
+# the modules for the real root, drop them from the initramfs, and
+# regenerate it for the image's kernel.
+cat > /usr/lib/modprobe.d/ryanabx-nvidia-blacklist.conf <<'EOF'
+blacklist nouveau
+blacklist nova_core
+blacklist nova_drm
+options nouveau modeset=0
 EOF
+cat > /usr/lib/dracut/dracut.conf.d/99-ryanabx-nvidia-blacklist.conf <<'EOF'
+omit_drivers+=" nouveau nova_core nova_drm "
+EOF
+env DRACUT_NO_XATTR=1 dracut -vf "/usr/lib/modules/${KVER}/initramfs.img" "${KVER}"
+chmod 0644 "/usr/lib/modules/${KVER}/initramfs.img"  # match the base image
+if lsinitrd "/usr/lib/modules/${KVER}/initramfs.img" | grep -qE '/(nouveau|nova[-_]core|nova[-_]drm)\.ko'; then
+    echo "error: nouveau/nova still present in the initramfs" >&2
+    exit 1
+fi
 
 rm -rf /var/cache/akmods/* /var/log/akmods/*
 dnf clean all

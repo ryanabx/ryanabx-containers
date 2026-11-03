@@ -121,15 +121,10 @@ sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ryanabx/ryanabx-kinoit
 ```
 
 > [!NOTE]
-> The `nvidia` image ships kernel arguments that blacklist `nouveau`,
-> `nova_core` and `nova_drm` in `/usr/lib/bootc/kargs.d/`. If they aren't
-> applied on your system (check `rpm-ostree kargs`), add them manually:
->
-> ```shell
-> sudo rpm-ostree kargs \
->   --append-if-missing=rd.driver.blacklist=nouveau,nova_core,nova_drm \
->   --append-if-missing=modprobe.blacklist=nouveau,nova_core,nova_drm
-> ```
+> The `nvidia` image keeps `nouveau` and `nova` from loading by
+> blacklisting them in `/usr/lib/modprobe.d` and leaving them out of the
+> image's initramfs, so no kernel arguments are needed, with either
+> `rpm-ostree` or `bootc`.
 >
 > The NVIDIA kernel modules are not signed, so Secure Boot must be
 > disabled for them to load.
