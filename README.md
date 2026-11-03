@@ -37,7 +37,7 @@ This repository contains all of my container definitions, built by
 | Image | Type | Base | Description |
 | --- | --- | --- | --- |
 | [ryanabx/ryanabx-dev](#ghcrioryanabxryanabx-dev) | Toolbox | `fedora:45` | My personal development toolbox |
-| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:45` | Kinoite + my package set |
+| [ryanabx/ryanabx-kinoite](#ghcrioryanabxryanabx-kinoite) | OS image | `fedora-ostree-desktops/kinoite:45` | Kinoite + my package set (+ `nvidia` variant) |
 | [ryanabx/cosmic-nightly](#ghcrioryanabxcosmic-nightly) | OS image | `fedora-ostree-desktops/cosmic-atomic:45` | Fedora COSMIC with my nightly COPR |
 
 ---
@@ -98,6 +98,13 @@ top of [Fedora Kinoite](https://docs.fedoraproject.org/en-US/echo-desktop/kinoit
 with the extra packages I use installed on top. This is the image I use
 for my day-to-day operating system!
 
+### Tags
+
+| Tag | Notes |
+| --- | --- |
+| `latest` | Kinoite + my package set |
+| `nvidia` | Same as `latest`, plus the NVIDIA driver and CUDA support from [RPM Fusion](https://rpmfusion.org/Howto/NVIDIA) (kmod prebuilt for the image's kernel) |
+
 ### Usage
 
 On an existing rpm-ostree machine, you can deploy this image as the
@@ -106,6 +113,26 @@ system:
 ```shell
 sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ryanabx/ryanabx-kinoite:latest
 ```
+
+or deploy the NVIDIA variant:
+
+```shell
+sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ryanabx/ryanabx-kinoite:nvidia
+```
+
+> [!NOTE]
+> The `nvidia` image ships kernel arguments that blacklist `nouveau`,
+> `nova_core` and `nova_drm` in `/usr/lib/bootc/kargs.d/`. If they aren't
+> applied on your system (check `rpm-ostree kargs`), add them manually:
+>
+> ```shell
+> sudo rpm-ostree kargs \
+>   --append-if-missing=rd.driver.blacklist=nouveau,nova_core,nova_drm \
+>   --append-if-missing=modprobe.blacklist=nouveau,nova_core,nova_drm
+> ```
+>
+> The NVIDIA kernel modules are not signed, so Secure Boot must be
+> disabled for them to load.
 
 or use it as a base layer for your own
 [bootc](https://github.com/containers/bootc)-based image:

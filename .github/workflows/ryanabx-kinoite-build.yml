@@ -8,6 +8,7 @@ on:
     paths:
       - 'Containerfiles/ryanabx-kinoite.Containerfile'
       - 'Containerfiles/install_packages.sh'
+      - 'Containerfiles/install_nvidia.sh'
       - '.github/workflows/ryanabx-kinoite-build.yml'
   schedule:
     - cron: "0 15 * * *" # 3pm UTC everyday (timed against official fedora container pushes)
@@ -25,6 +26,14 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false
+      # One image per row, same Containerfile: the default image (tagged
+      # "latest") and one with the NVIDIA driver + CUDA (tagged "nvidia").
+      matrix:
+        include:
+          - tag: "latest"
+            nvidia: "false"
+          - tag: "nvidia"
+            nvidia: "true"
     steps:
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v7
@@ -49,7 +58,7 @@ jobs:
           path: |
             $HOME/.local/share/containers/storage
             $HOME/.cache/dnf
-          key: buildah-kinoite-${{ hashFiles('Containerfiles/ryanabx-kinoite.Containerfile', 'Containerfiles/install_packages.sh') }}
+          key: buildah-kinoite-${{ matrix.tag }}-${{ hashFiles('Containerfiles/ryanabx-kinoite.Containerfile', 'Containerfiles/install_packages.sh', 'Containerfiles/install_nvidia.sh') }}
 
       # Build metadata
       - name: Image Metadata
@@ -71,6 +80,9 @@ jobs:
           containerfiles: |
             Containerfiles/ryanabx-kinoite.Containerfile
           image: ryanabx-kinoite
+          tags: ${{ matrix.tag }}
+          build-args: |
+            NVIDIA=${{ matrix.nvidia }}
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
