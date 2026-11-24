@@ -98,5 +98,8 @@ dnf install -y \
     --setopt=deltarpm=False \
     "${packages[@]}"
 
+# For KRDP
+dnf swap -y --setopt=deltarpm=False noopenh264 openh264
+
 # Finally, after installing, clean all
 dnf clean all
