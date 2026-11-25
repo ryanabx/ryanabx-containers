@@ -104,6 +104,7 @@ for my day-to-day operating system!
 | --- | --- |
 | `latest` | Kinoite + my package set |
 | `nvidia` | Same as `latest`, plus the NVIDIA driver and CUDA support from [RPM Fusion](https://rpmfusion.org/Howto/NVIDIA) (kmod prebuilt for the image's kernel) |
+| `nvidia-proprietary` | Same as `nvidia`, but with NVIDIA's proprietary kernel module instead of the open one |
 
 ### Usage
 

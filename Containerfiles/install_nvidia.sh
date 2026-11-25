@@ -8,6 +8,13 @@
 # so the module is baked into the image and nothing is compiled on boot.
 set -euo pipefail
 
+# "open" or "proprietary" kernel module (see the akmods step below)
+NVIDIA_KMOD="${NVIDIA_KMOD:-open}"
+case "${NVIDIA_KMOD}" in
+    open|proprietary) ;;
+    *) echo "error: NVIDIA_KMOD must be open or proprietary, got '${NVIDIA_KMOD}'" >&2; exit 1 ;;
+esac
+
 # The kernel shipped in the image (not the build host's `uname -r`)
 read -r KV KR KARCH < <(rpm -q kernel-core --qf '%{VERSION} %{RELEASE} %{ARCH}\n' | tail -n1)
 KVER="${KV}-${KR}.${KARCH}"
@@ -65,6 +72,15 @@ chmod 755 /usr/sbin/akmods-ostree-post
 dnf install -y --setopt=deltarpm=False "${packages[@]}"
 mv -f /usr/sbin/akmods-ostree-post.orig /usr/sbin/akmods-ostree-post
 
+# nvidia-kmod's %prep picks the open module unless it sees a GPU on its
+# list of cards the open module doesn't support. It runs lspci on the build
+# host, which has no NVIDIA GPU here, so it always picks open. Turning the
+# detection off keeps the proprietary module. The macro stays in the image
+# so akmods rebuilds on the client keep the same variant.
+if [ "${NVIDIA_KMOD}" = "proprietary" ]; then
+    echo '%_without_kmod_nvidia_detect 1' > /etc/rpm/macros.nvidia-kmod
+fi
+
 # Build and install kmod-nvidia for the image's kernel
 akmods --force --kernels "${KVER}" --kmod nvidia
 
@@ -74,6 +90,14 @@ if ! modinfo -k "${KVER}" nvidia nvidia-drm nvidia-modeset nvidia-uvm > /dev/nul
     echo "error: nvidia kmod was not built for ${KVER}" >&2
     exit 1
 fi
+
+# ...and that it is the requested variant (the open module is dual
+# MIT/GPL, the proprietary one is licensed "NVIDIA")
+license="$(modinfo -k "${KVER}" -F license nvidia)"
+case "${NVIDIA_KMOD}:${license}" in
+    "open:Dual MIT/GPL"|"proprietary:NVIDIA") ;;
+    *) echo "error: wanted the ${NVIDIA_KMOD} nvidia kmod, got license '${license}'" >&2; exit 1 ;;
+esac
 
 # Keep the in-kernel NVIDIA drivers (nouveau, and the Rust nova-core/
 # nova-drm, not built by Fedora's kernel today) from grabbing the GPU.

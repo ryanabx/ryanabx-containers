@@ -27,13 +27,20 @@ jobs:
     strategy:
       fail-fast: false
       # One image per row, same Containerfile: the default image (tagged
-      # "latest") and one with the NVIDIA driver + CUDA (tagged "nvidia").
+      # "latest"), one with the NVIDIA driver + CUDA (tagged "nvidia") and
+      # the same with the proprietary instead of the open kernel module
+      # (tagged "nvidia-proprietary").
       matrix:
         include:
           - tag: "latest"
             nvidia: "false"
+            nvidia_kmod: "open"
           - tag: "nvidia"
             nvidia: "true"
+            nvidia_kmod: "open"
+          - tag: "nvidia-proprietary"
+            nvidia: "true"
+            nvidia_kmod: "proprietary"
     steps:
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@v7
@@ -83,6 +90,7 @@ jobs:
           tags: ${{ matrix.tag }}
           build-args: |
             NVIDIA=${{ matrix.nvidia }}
+            NVIDIA_KMOD=${{ matrix.nvidia_kmod }}
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
